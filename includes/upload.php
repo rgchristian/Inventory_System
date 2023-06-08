@@ -13,12 +13,12 @@ class  Media {
 
   public $errors = array();
   public $upload_errors = array(
-    0 => 'There is no error, the file uploaded with success',
+    0 => 'There is no error, the file was uploaded successfully',
     1 => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
-    2 => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
-    3 => 'The uploaded file was only partially uploaded',
-    4 => 'No file was uploaded',
-    6 => 'Missing a temporary folder',
+    2 => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.',
+    3 => 'The uploaded file was only partially uploaded.',
+    4 => 'No file was uploaded.',
+    6 => 'Missing a temporary folder.',
     7 => 'Failed to write file to disk.',
     8 => 'A PHP extension stopped the file upload.'
   );
@@ -64,7 +64,7 @@ class  Media {
       $this->errors[] = "The file location was not available.";
       return false;
     elseif(!is_writable($this->productPath)):
-      $this->errors[] = $this->productPath." Must be writable!!!.";
+      $this->errors[] = $this->productPath." Must be writable!.";
       return false;
     elseif(file_exists($this->productPath."/".$this->fileName)):
       $this->errors[] = "The file {$this->fileName} already exists.";
@@ -86,7 +86,7 @@ class  Media {
       }
 
     if(!is_writable($this->productPath)){
-        $this->errors[] = $this->productPath." Must be writable!!!.";
+        $this->errors[] = $this->productPath." Must be writable.";
         return false;
       }
 
@@ -123,7 +123,7 @@ class  Media {
         return false;
       }
     if(!is_writable($this->userPath)){
-        $this->errors[] = $this->userPath." Must be writable!!!.";
+        $this->errors[] = $this->userPath." Must be writable.";
         return false;
       }
     if(!$id){
@@ -207,7 +207,7 @@ class  Media {
          unlink($this->productPath.'/'.$this->fileName);
          return true;
      } else {
-       $this->error[] = "Photo deletion failed Or Missing Prm.";
+       $this->error[] = "Photo removed unsuccessful";
        return false;
      }
 

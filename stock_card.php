@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Sales Report';
+$page_title = 'Stock Card Report';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(3);
@@ -24,11 +24,11 @@ $page_title = 'Sales Report';
       <div class="panel-heading">
         <strong>
           
-          <span>Sales Report</span>
+          <span>Stock Card</span>
         </strong>
       </div>
       <div class="panel-body">
-        <form class="clearfix" method="post" action="sale_report_process.php">
+        <form class="clearfix" method="post" action="stock_card_process.php">
 
         <div class="form-group">
               <label class="form-label">Date</label>

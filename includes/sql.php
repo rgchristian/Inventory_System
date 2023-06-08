@@ -147,6 +147,7 @@ function tableExists($table){
       $result = find_by_sql($sql);
       return $result;
   }
+  
   /*--------------------------------------------------------------*/
   /* Function to update the last log in of a user
   /*--------------------------------------------------------------*/
@@ -189,17 +190,17 @@ function tableExists($table){
      $login_level = find_by_groupLevel($current_user['user_level']);
      //if user not login
      if (!$session->isUserLoggedIn(true)):
-            $session->msg('d','Please login...');
+            $session->msg('d','Login to access this page.');
             redirect('index.php', false);
       //if Group status Deactive
      elseif($login_level['group_status'] === '0'):
-           $session->msg('d','This level user has been band!');
+           $session->msg('d','This user has been banned.');
            redirect('home.php',false);
-      //cheackin log in User level and Require level is Less than or equal to
+      //checking log in User level and Require level is Less than or equal to
      elseif($current_user['user_level'] <= (int)$require_level):
               return true;
       else:
-            $session->msg("d", "Sorry! you dont have permission to view the page.");
+            $session->msg("d", "Only user admin have the access to this page.");
             redirect('home.php', false);
         endif;
 
@@ -208,17 +209,17 @@ function tableExists($table){
    /* Function for Finding all product name
    /* JOIN with categorie  and media database table
    /*--------------------------------------------------------------*/
-  function join_product_table(){
-     global $db;
-     $sql  =" SELECT p.id,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date,c.name";
-    $sql  .=" AS categorie,m.file_name AS image";
-    $sql  .=" FROM products p";
-    $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
-    $sql  .=" LEFT JOIN media m ON m.id = p.media_id";
-    $sql  .=" ORDER BY p.id ASC";
+   function join_product_table()
+    {
+    global $db;
+    $sql  = "SELECT p.id, p.name, p.quantity, p.buy_price, p.sale_price, p.media_id, p.date, c.name AS categorie, m.file_name AS image, p.tile_size, s.supp_name AS supplier";
+    $sql .= " FROM products p";
+    $sql .= " LEFT JOIN categories c ON c.id = p.categorie_id";
+    $sql .= " LEFT JOIN media m ON m.id = p.media_id";
+    $sql .= " LEFT JOIN suppliers s ON s.id = p.supplier";
+    $sql .= " ORDER BY p.id ASC";
     return find_by_sql($sql);
-
-   }
+    }
   /*--------------------------------------------------------------*/
   /* Function for Finding all product name
   /* Request coming from ajax.php for auto suggest
@@ -257,6 +258,18 @@ function tableExists($table){
 
   }
   /*--------------------------------------------------------------*/
+  /* Function for Update product quantity stock
+  /*--------------------------------------------------------------*/
+  function update_product_qty_stock($qty,$p_id){
+    global $db;
+    $qty = (int) $qty;
+    $id  = (int)$p_id;
+    $sql = "UPDATE products SET quantity = quantity + '{$qty}' WHERE id = '{$id}'";
+    $result = $db->query($sql);
+    return($db->affected_rows() === 1 ? true : false);
+
+  }
+  /*--------------------------------------------------------------*/
   /* Function for Display Recent product Added
   /*--------------------------------------------------------------*/
  function find_recent_product_added($limit){
@@ -269,7 +282,7 @@ function tableExists($table){
    return find_by_sql($sql);
  }
  /*--------------------------------------------------------------*/
- /* Function for Find Highest saleing Product
+ /* Function for Find Highest selling Product
  /*--------------------------------------------------------------*/
  function find_higest_saleing_product($limit){
    global $db;
@@ -350,5 +363,15 @@ function  monthlySales($year){
   $sql .= " ORDER BY date_format(s.date, '%c' ) ASC";
   return find_by_sql($sql);
 }
+
+function find_suppliers(){
+  global $db;
+  $results = array();
+  $sql = "SELECT id, supp_name, company_name, address, email, phone ";
+  $sql .= "FROM suppliers";
+  $result = find_by_sql($sql);
+  return $result;
+}
+
 
 ?>

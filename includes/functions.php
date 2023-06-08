@@ -72,15 +72,18 @@ function redirect($url, $permanent = false)
 /*--------------------------------------------------------------*/
 /* Function for find out total saleing price, buying price and profit
 /*--------------------------------------------------------------*/
-function total_price($totals){
-   $sum = 0;
-   $sub = 0;
-   foreach($totals as $total ){
-     $sum += $total['total_saleing_price'];
-     $sub += $total['total_buying_price'];
-     $profit = $sum - $sub;
-   }
-   return array($sum,$profit);
+function total_price($result) {
+  try {
+    $total = 0;
+    $profit = 0; // Initialize profit variable
+    foreach($result as $res) {
+      $total += $res['total_saleing_price'];
+      $profit += ($res['total_saleing_price'] - $res['buy_price'] * $res['total_sales']);
+    }
+    return array($total, $profit);
+  } catch (Throwable $e) {
+    return array(0, '<td>Error</td>'); // Return '<td>Error</td>' as profit value
+  }
 }
 /*--------------------------------------------------------------*/
 /* Function for Readable date time

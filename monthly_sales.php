@@ -9,17 +9,25 @@
  $sales = monthlySales($year);
 ?>
 <?php include_once('layouts/header.php'); ?>
+
+<style>
+  body {
+    background-color: #DDDDDD;
+    }
+</style>
+
 <div class="row">
   <div class="col-md-6">
     <?php echo display_msg($msg); ?>
   </div>
 </div>
+
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading clearfix">
           <strong>
-            <span class="glyphicon glyphicon-th"></span>
+            
             <span>Monthly Sales</span>
           </strong>
         </div>

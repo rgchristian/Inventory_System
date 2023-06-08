@@ -88,10 +88,10 @@ $results = '';
           <tr>
               <th>Date</th>
               <th>Product Title</th>
-              <th>Buying Price</th>
-              <th>Selling Price</th>
+              <th>Supplier</th>
+              <th>Stock-In</th>
+              <th>Stock-Out</th>
               <th>Total Quantity</th>
-              <th>TOTAL</th>
           </tr>
         </thead>
         <tbody>

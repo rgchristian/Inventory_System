@@ -111,14 +111,14 @@ CREATE TABLE IF NOT EXISTS `sales` (
 --
 
 INSERT INTO `sales` (`id`, `product_id`, `qty`, `price`, `date`) VALUES
-(1, 1, 2, '1000.00', '2021-04-04'),
-(2, 3, 3, '15.00', '2021-04-04'),
-(3, 10, 6, '1932.00', '2021-04-04'),
-(4, 6, 2, '830.00', '2021-04-04'),
-(5, 12, 5, '50.00', '2021-04-04'),
-(6, 13, 21, '399.00', '2021-04-04'),
-(7, 7, 5, '35.00', '2021-04-04'),
-(8, 9, 2, '110.00', '2021-04-04');
+(1, 1, 2, '1000.00', '2023-04-04'),
+(2, 3, 3, '15.00', '2023-04-04'),
+(3, 10, 6, '1932.00', '2023-04-04'),
+(4, 6, 2, '830.00', '2023-04-04'),
+(5, 12, 5, '50.00', '2023-04-04'),
+(6, 13, 21, '399.00', '2023-04-04'),
+(7, 7, 5, '35.00', '2023-04-04'),
+(8, 9, 2, '110.00', '2023-04-04');
 
 -- --------------------------------------------------------
 
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `user_groups` (
 
 INSERT INTO `user_groups` (`id`, `group_name`, `group_level`, `group_status`) VALUES
 (1, 'Admin', 1, 1),
-(2, 'special', 2, 1),
+(2, 'Employee', 2, 1),
 (3, 'User', 3, 1);
 
 --
@@ -269,3 +269,12 @@ ADD CONSTRAINT `FK_user` FOREIGN KEY (`user_level`) REFERENCES `user_groups` (`g
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+
+
+ 
+ 
+
