@@ -10,7 +10,7 @@
   $user_id = (int)$_POST['user_id'];
   $photo->upload($_FILES['file_upload']);
   if($photo->process_user($user_id)){
-    $session->msg('s','photo has been uploaded.');
+    $session->msg('s','Profile Picture changed successfully.');
     redirect('edit_account.php');
     } else{
       $session->msg('d',join($photo->errors));
@@ -18,6 +18,7 @@
     }
   }
 ?>
+
 <?php
  //update user other info
   if(isset($_POST['update'])){
@@ -30,10 +31,10 @@
             $sql = "UPDATE users SET name ='{$name}', username ='{$username}' WHERE id='{$id}'";
     $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
-            $session->msg('s',"Acount updated ");
+            $session->msg('s', "Account successfully updated.");
             redirect('edit_account.php', false);
           } else {
-            $session->msg('d',' Sorry failed to updated!');
+            $session->msg('d', 'Failed to update display info.');
             redirect('edit_account.php', false);
           }
     } else {
@@ -42,19 +43,29 @@
     }
   }
 ?>
+
 <?php include_once('layouts/header.php'); ?>
+
+<style>
+  body {
+    background-color: #DDDDDD;
+    }
+</style>
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"">
 <div class="row">
   <div class="col-md-12">
     <?php echo display_msg($msg); ?>
   </div>
   <div class="col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">
+        
           <div class="panel-heading clearfix">
-            <span class="glyphicon glyphicon-camera"></span>
-            <span>Change My photo</span>
+            
+            <strong>
+              <span>Edit Profile Picture</span>
+            </strong>
           </div>
-        </div>
         <div class="panel-body">
           <div class="row">
             <div class="col-md-4">
@@ -63,11 +74,14 @@
             <div class="col-md-8">
               <form class="form" action="edit_account.php" method="POST" enctype="multipart/form-data">
               <div class="form-group">
-                <input type="file" name="file_upload" multiple="multiple" class="btn btn-default btn-file"/>
+              <label for="file_upload" class="btn btn-default btn-file btn-block">
+                  <i class="fa fa-upload"></i> Upload Picture
+                    <input type="file" name="file_upload" id="file_upload" multiple="multiple" style="display: none;">
+              </label>
               </div>
               <div class="form-group">
                 <input type="hidden" name="user_id" value="<?php echo $user['id'];?>">
-                 <button type="submit" name="submit" class="btn btn-warning">Change</button>
+                 <button type="submit" name="submit" class="btn btn-primary btn-block"><span class="fa fa-check"></span> Save Changes</button>
               </div>
              </form>
             </div>
@@ -78,8 +92,10 @@
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
-        <span class="glyphicon glyphicon-edit"></span>
-        <span>Edit My Account</span>
+        
+        <strong>
+          <span>Edit Display Information</span>
+        </strong>
       </div>
       <div class="panel-body">
           <form method="post" action="edit_account.php?id=<?php echo (int)$user['id'];?>" class="clearfix">
@@ -92,8 +108,8 @@
                   <input type="text" class="form-control" name="username" value="<?php echo remove_junk(ucwords($user['username'])); ?>">
             </div>
             <div class="form-group clearfix">
-                    <a href="change_password.php" title="change password" class="btn btn-danger pull-right">Change Password</a>
-                    <button type="submit" name="update" class="btn btn-info">Update</button>
+                    <a href="change_password.php" title="change password" class="btn btn-primary pull-right btn-sm"><span class="fa fa-lock"></span> Change Password</a>
+                    <button type="submit" name="update" class="btn btn-primary btn-sm"><span class="fa fa-check"></span> Save Changes</button>
             </div>
         </form>
       </div>

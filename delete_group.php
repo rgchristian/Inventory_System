@@ -6,10 +6,10 @@
 <?php
   $delete_id = delete_by_id('user_groups',(int)$_GET['id']);
   if($delete_id){
-      $session->msg("s","Group has been deleted.");
+      $session->msg("s","Group removed successfully.");
       redirect('group.php');
   } else {
-      $session->msg("d","Group deletion failed Or Missing Prm.");
+      $session->msg("d","Group failed to remove.");
       redirect('group.php');
   }
 ?>

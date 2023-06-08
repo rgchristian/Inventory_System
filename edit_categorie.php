@@ -23,10 +23,10 @@ if(isset($_POST['edit_cat'])){
        $sql .= " WHERE id='{$categorie['id']}'";
      $result = $db->query($sql);
      if($result && $db->affected_rows() === 1) {
-       $session->msg("s", "Successfully updated Categorie");
+       $session->msg("s", "Category updated successfully.");
        redirect('categorie.php',false);
      } else {
-       $session->msg("d", "Sorry! Failed to Update");
+       $session->msg("d", "Failed to update category.");
        redirect('categorie.php',false);
      }
   } else {
@@ -35,18 +35,19 @@ if(isset($_POST['edit_cat'])){
   }
 }
 ?>
+
 <?php include_once('layouts/header.php'); ?>
 
 <div class="row">
    <div class="col-md-12">
      <?php echo display_msg($msg); ?>
    </div>
-   <div class="col-md-5">
+   <div class="col-md-4">
      <div class="panel panel-default">
        <div class="panel-heading">
          <strong>
-           <span class="glyphicon glyphicon-th"></span>
-           <span>Editing <?php echo remove_junk(ucfirst($categorie['name']));?></span>
+           
+           <span>Edit Category</span>
         </strong>
        </div>
        <div class="panel-body">
@@ -54,7 +55,7 @@ if(isset($_POST['edit_cat'])){
            <div class="form-group">
                <input type="text" class="form-control" name="categorie-name" value="<?php echo remove_junk(ucfirst($categorie['name']));?>">
            </div>
-           <button type="submit" name="edit_cat" class="btn btn-primary">Update categorie</button>
+           <button type="submit" name="edit_cat" class="btn btn-primary btn-sm pull-right"><span class="fa fa-check"></span> Save Changes</button>
        </form>
        </div>
      </div>

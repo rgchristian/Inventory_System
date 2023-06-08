@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Edit product';
+  $page_title = 'Edit Product';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(2);
@@ -9,7 +9,7 @@ $product = find_by_id('products',(int)$_GET['id']);
 $all_categories = find_all('categories');
 $all_photo = find_all('media');
 if(!$product){
-  $session->msg("d","Missing product id.");
+  $session->msg("d", "Product doesn't exist.");
   redirect('product.php');
 }
 ?>
@@ -35,10 +35,10 @@ if(!$product){
        $query  .=" WHERE id ='{$product['id']}'";
        $result = $db->query($query);
                if($result && $db->affected_rows() === 1){
-                 $session->msg('s',"Product updated ");
+                 $session->msg('s', "Product successfully updated.");
                  redirect('product.php', false);
                } else {
-                 $session->msg('d',' Sorry failed to updated!');
+                 $session->msg('d', 'Failed to update product');
                  redirect('edit_product.php?id='.$product['id'], false);
                }
 
@@ -50,42 +50,55 @@ if(!$product){
  }
 
 ?>
+
 <?php include_once('layouts/header.php'); ?>
+
 <div class="row">
   <div class="col-md-12">
     <?php echo display_msg($msg); ?>
   </div>
 </div>
+
   <div class="row">
+  <div class="col-md-12">
+    <?php echo display_msg($msg); ?>
+  </div>
+</div>
+
+  <div class="row">
+  <div class="col-md-8">
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
-            <span class="glyphicon glyphicon-th"></span>
-            <span>Add New Product</span>
+            
+            <span>Edit Product Stock</span>
          </strong>
         </div>
+
         <div class="panel-body">
-         <div class="col-md-7">
-           <form method="post" action="edit_product.php?id=<?php echo (int)$product['id'] ?>">
+         <div class="col-md-12">
+          <form method="post" action="edit_product.php?id=<?php echo (int)$product['id'] ?>">
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-addon">
-                   <i class="glyphicon glyphicon-th-large"></i>
+                   <i class="fa fa-pencil"></i>
                   </span>
                   <input type="text" class="form-control" name="product-title" value="<?php echo remove_junk($product['name']);?>">
                </div>
               </div>
+
               <div class="form-group">
                 <div class="row">
                   <div class="col-md-6">
                     <select class="form-control" name="product-categorie">
-                    <option value=""> Select a categorie</option>
+                    <option value=""> Select Product Category</option>
                    <?php  foreach ($all_categories as $cat): ?>
                      <option value="<?php echo (int)$cat['id']; ?>" <?php if($product['categorie_id'] === $cat['id']): echo "selected"; endif; ?> >
                        <?php echo remove_junk($cat['name']); ?></option>
                    <?php endforeach; ?>
                  </select>
                   </div>
+
                   <div class="col-md-6">
                     <select class="form-control" name="product-photo">
                       <option value=""> No image</option>
@@ -111,24 +124,26 @@ if(!$product){
                    </div>
                   </div>
                  </div>
+
                  <div class="col-md-4">
                   <div class="form-group">
                     <label for="qty">Buying price</label>
                     <div class="input-group">
                       <span class="input-group-addon">
-                        <i class="glyphicon glyphicon-usd"></i>
+                        <i class="fa fa-money"></i>
                       </span>
                       <input type="number" class="form-control" name="buying-price" value="<?php echo remove_junk($product['buy_price']);?>">
                       <span class="input-group-addon">.00</span>
                    </div>
                   </div>
                  </div>
-                  <div class="col-md-4">
+                 
+                 <div class="col-md-4">
                    <div class="form-group">
                      <label for="qty">Selling price</label>
                      <div class="input-group">
                        <span class="input-group-addon">
-                         <i class="glyphicon glyphicon-usd"></i>
+                         <i class="fa fa-tag"></i>
                        </span>
                        <input type="number" class="form-control" name="saleing-price" value="<?php echo remove_junk($product['sale_price']);?>">
                        <span class="input-group-addon">.00</span>
@@ -137,7 +152,7 @@ if(!$product){
                   </div>
                </div>
               </div>
-              <button type="submit" name="product" class="btn btn-danger">Update</button>
+              <button type="submit" name="product" class="btn btn-primary pull-right btn-sm"><span class="fa fa-check"></span> Save Changes</button>
           </form>
          </div>
         </div>
@@ -145,3 +160,5 @@ if(!$product){
   </div>
 
 <?php include_once('layouts/footer.php'); ?>
+
+

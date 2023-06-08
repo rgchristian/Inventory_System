@@ -4,6 +4,7 @@
   // Checkin What level user has permission to view this page
    page_require_level(1);
 ?>
+
 <?php
   $e_user = find_by_id('users',(int)$_GET['id']);
   $groups  = find_all('user_groups');
@@ -62,8 +63,8 @@ if(isset($_POST['update-pass'])) {
     redirect('edit_user.php?id='.(int)$e_user['id'],false);
   }
 }
-
 ?>
+
 <?php include_once('layouts/header.php'); ?>
  <div class="row">
    <div class="col-md-12"> <?php echo display_msg($msg); ?> </div>
@@ -71,8 +72,8 @@ if(isset($_POST['update-pass'])) {
      <div class="panel panel-default">
        <div class="panel-heading">
         <strong>
-          <span class="glyphicon glyphicon-th"></span>
-          Update <?php echo remove_junk(ucwords($e_user['name'])); ?> Account
+          
+          Edit Account
         </strong>
        </div>
        <div class="panel-body">
@@ -97,11 +98,11 @@ if(isset($_POST['update-pass'])) {
               <label for="status">Status</label>
                 <select class="form-control" name="status">
                   <option <?php if($e_user['status'] === '1') echo 'selected="selected"';?>value="1">Active</option>
-                  <option <?php if($e_user['status'] === '0') echo 'selected="selected"';?> value="0">Deactive</option>
+                  <option <?php if($e_user['status'] === '0') echo 'selected="selected"';?> value="0">Inactive</option>
                 </select>
             </div>
             <div class="form-group clearfix">
-                    <button type="submit" name="update" class="btn btn-info">Update</button>
+                    <button type="submit" name="update" class="btn btn-primary pull-right btn-sm"><span class="fa fa-check"></span> Save Changes</button>
             </div>
         </form>
        </div>
@@ -112,8 +113,8 @@ if(isset($_POST['update-pass'])) {
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>
-          <span class="glyphicon glyphicon-th"></span>
-          Change <?php echo remove_junk(ucwords($e_user['name'])); ?> password
+          
+          Change Password
         </strong>
       </div>
       <div class="panel-body">
@@ -123,7 +124,7 @@ if(isset($_POST['update-pass'])) {
                 <input type="password" class="form-control" name="password" placeholder="Type user new password">
           </div>
           <div class="form-group clearfix">
-                  <button type="submit" name="update-pass" class="btn btn-danger pull-right">Change</button>
+                  <button type="submit" name="update-pass" class="btn btn-primary pull-right btn-sm"><span class="fa fa-check"></span> Save Changes</button>
           </div>
         </form>
       </div>

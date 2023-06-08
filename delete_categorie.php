@@ -6,17 +6,17 @@
 <?php
   $categorie = find_by_id('categories',(int)$_GET['id']);
   if(!$categorie){
-    $session->msg("d","Missing Categorie id.");
+    $session->msg("d","Category not found.");
     redirect('categorie.php');
   }
 ?>
 <?php
   $delete_id = delete_by_id('categories',(int)$categorie['id']);
   if($delete_id){
-      $session->msg("s","Categorie deleted.");
+      $session->msg("s","Category removed successfully.");
       redirect('categorie.php');
   } else {
-      $session->msg("d","Categorie deletion failed.");
+      $session->msg("d","Category failed to delete.");
       redirect('categorie.php');
   }
 ?>

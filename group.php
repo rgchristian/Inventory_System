@@ -1,11 +1,20 @@
 <?php
-  $page_title = 'All Group';
+  $page_title = 'User Roles';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(1);
   $all_groups = find_all('user_groups');
 ?>
 <?php include_once('layouts/header.php'); ?>
+
+<style>
+  body {
+    background-color: #DDDDDD;
+    }
+</style>
+
+
+
 <div class="row">
    <div class="col-md-12">
      <?php echo display_msg($msg); ?>
@@ -16,18 +25,18 @@
     <div class="panel panel-default">
     <div class="panel-heading clearfix">
       <strong>
-        <span class="glyphicon glyphicon-th"></span>
-        <span>Groups</span>
+        
+        <span>Manage Roles</span>
      </strong>
-       <a href="add_group.php" class="btn btn-info pull-right btn-sm"> Add New Group</a>
+       <a href="add_group.php" class="btn btn-primary pull-right btn-sm"><span class="fa fa-plus"></span> Add New Role</a>
     </div>
      <div class="panel-body">
       <table class="table table-bordered">
         <thead>
           <tr>
             <th class="text-center" style="width: 50px;">#</th>
-            <th>Group Name</th>
-            <th class="text-center" style="width: 20%;">Group Level</th>
+            <th >Role Name</th>
+            <th class="text-center" style="width: 20%;">Role Level</th>
             <th class="text-center" style="width: 15%;">Status</th>
             <th class="text-center" style="width: 100px;">Actions</th>
           </tr>
@@ -50,10 +59,10 @@
            <td class="text-center">
              <div class="btn-group">
                 <a href="edit_group.php?id=<?php echo (int)$a_group['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
-                  <i class="glyphicon glyphicon-pencil"></i>
+                  <i class="fa fa-pencil-square-o"></i>
                </a>
                 <a href="delete_group.php?id=<?php echo (int)$a_group['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
-                  <i class="glyphicon glyphicon-remove"></i>
+                  <i class="fa fa-trash-o"></i>
                 </a>
                 </div>
            </td>

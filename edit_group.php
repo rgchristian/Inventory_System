@@ -11,9 +11,9 @@
     redirect('group.php');
   }
 ?>
+
 <?php
   if(isset($_POST['update'])){
-
    $req_fields = array('group-name','group-level');
    validate_fields($req_fields);
    if(empty($errors)){
@@ -27,11 +27,11 @@
         $result = $db->query($query);
          if($result && $db->affected_rows() === 1){
           //sucess
-          $session->msg('s',"Group has been updated! ");
+          $session->msg('s', "Role successfully updated.");
           redirect('edit_group.php?id='.(int)$e_group['id'], false);
         } else {
           //failed
-          $session->msg('d',' Sorry failed to updated Group!');
+          $session->msg('d', 'Failed to update role.');
           redirect('edit_group.php?id='.(int)$e_group['id'], false);
         }
    } else {
@@ -41,31 +41,50 @@
  }
 ?>
 <?php include_once('layouts/header.php'); ?>
-<div class="login-page">
-    <div class="text-center">
-       <h3>Edit Group</h3>
+
+<div class="row">
+     <div class="col-md-12">
+       <?php echo display_msg($msg); ?>
      </div>
-     <?php echo display_msg($msg); ?>
-      <form method="post" action="edit_group.php?id=<?php echo (int)$e_group['id'];?>" class="clearfix">
+  </div>
+   <div class="row">
+    <div class="col-md-5">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>
+            
+            <span>Edit Role</span>
+          </strong>
+        </div>
+
+        <div class="panel-body">
+          <form method="post" action="edit_group.php?id=<?php echo (int)$e_group['id'];?>">
+
+          <form method="post" action="edit_group.php?id=<?php echo (int)$e_group['id'];?>" class="clearfix">
         <div class="form-group">
-              <label for="name" class="control-label">Group Name</label>
+              <label for="name" class="control-label">Role Name</label>
               <input type="name" class="form-control" name="group-name" value="<?php echo remove_junk(ucwords($e_group['group_name'])); ?>">
         </div>
+
         <div class="form-group">
-              <label for="level" class="control-label">Group Level</label>
+              <label for="level" class="control-label">Role Level</label>
               <input type="number" class="form-control" name="group-level" value="<?php echo (int)$e_group['group_level']; ?>">
         </div>
+
         <div class="form-group">
           <label for="status">Status</label>
               <select class="form-control" name="status">
-                <option <?php if($e_group['group_status'] === '1') echo 'selected="selected"';?> value="1"> Active </option>
-                <option <?php if($e_group['group_status'] === '0') echo 'selected="selected"';?> value="0">Deactive</option>
+                <option <?php if($e_group['group_status'] === '1') echo 'selected="selected"';?> value="1">Active</option>
+                <option <?php if($e_group['group_status'] === '0') echo 'selected="selected"';?> value="0">Inactive</option>
               </select>
         </div>
+
         <div class="form-group clearfix">
-                <button type="submit" name="update" class="btn btn-info">Update</button>
+                <button type="submit" name="update" class="btn btn-primary pull-right btn-sm"><span class="fa fa-check"></span> Save Changes</button>
         </div>
     </form>
 </div>
 
 <?php include_once('layouts/footer.php'); ?>
+
+
