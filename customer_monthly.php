@@ -1,14 +1,12 @@
 <?php
-  $page_title = 'Daily Sales';
+  $page_title = 'Monthly Record';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(3);
 ?>
-
 <?php
- $year  = date('Y');
- $month = date('m');
- $sales = dailySales($year,$month);
+ $year = date('Y');
+ $sales = monthlySales($year);
 ?>
 <?php include_once('layouts/header.php'); ?>
 
@@ -28,8 +26,8 @@
       <div class="panel panel-default">
         <div class="panel-heading clearfix">
           <strong>
-            
-            <span>Daily Sales</span>
+            <span class="fa fa-calendar-plus-o"></span>
+            <span>Monthly Orders</span>
           </strong>
         </div>
         <div class="panel-body">

@@ -36,8 +36,11 @@
 
           $html .= "<tr>";
 
-          $html .= "<td id=\"s_name\">".$result['name']."</td>";
-          $html .= "<input type=\"hidden\" name=\"s_id\" value=\"{$result['id']}\">";
+          $html  .= "<td>";
+          $html .= "<input type=\"text\" class=\"form-control\" id=\"s_name\" value=\"{$result['name']}\">";
+          $html .= "</td>";
+
+          $html .= "<input type=\"hidden\" class=\"form-control\" name=\"s_id\" value=\"{$result['id']}\">";
           $html  .= "<td>";
           $html  .= "<input type=\"text\" class=\"form-control\" name=\"price\" value=\"{$result['sale_price']}\">";
           $html  .= "</td>";
@@ -50,14 +53,15 @@
           $html  .= "<td>";
           $html  .= "<input type=\"date\" class=\"form-control datePicker\" name=\"date\" data-date data-date-format=\"yyyy-mm-dd\">";
           $html  .= "</td>";
-          $html  .= "<td>";
-          $html  .= "<button type=\"submit\" name=\"add_sale\" class=\"btn btn-primary\">Add sale</button>";
+
+          $html .= "<td style=\"text-align: center;\">";
+          $html  .= "<button type=\"submit\" name=\"add_sale\" class=\"btn btn-primary btn-sm\">Stock-Out</button>";
           $html  .= "</td>";
           $html  .= "</tr>";
 
         }
     } else {
-        $html ='<tr><td>product name not resgister in database</td></tr>';
+        $html ='<tr><td>Product does not exist.</td></tr>';
     }
 
     echo json_encode($html);

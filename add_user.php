@@ -5,6 +5,7 @@
   page_require_level(1);
   $groups = find_all('user_groups');
 ?>
+
 <?php
   if(isset($_POST['add_user'])){
 
@@ -24,11 +25,11 @@
         $query .=")";
         if($db->query($query)){
           //sucess
-          $session->msg('s',"User account has been creted! ");
+          $session->msg("s", 'User successfully added.');
           redirect('add_user.php', false);
         } else {
           //failed
-          $session->msg('d',' Sorry failed to create account!');
+          $session->msg("d", "Failed to add user.");
           redirect('add_user.php', false);
         }
    } else {
@@ -37,31 +38,46 @@
    }
  }
 ?>
+
+
+
 <?php include_once('layouts/header.php'); ?>
+
   <?php echo display_msg($msg); ?>
   <div class="row">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <strong>
-          <span class="glyphicon glyphicon-th"></span>
-          <span>Add New User</span>
-       </strong>
-      </div>
-      <div class="panel-body">
-        <div class="col-md-6">
+     <div class="col-md-12">
+       <?php echo display_msg($msg); ?>
+     </div>
+  </div>
+
+   <div class="row">
+    <div class="col-md-5">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>
+            
+            <span>Add New User</span>
+          </strong>
+        </div>
+
+        <div class="panel-body">
           <form method="post" action="add_user.php">
-            <div class="form-group">
+
+          <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" name="full-name" placeholder="Full Name">
-            </div>
-            <div class="form-group">
+          </div>
+
+          <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" name="username" placeholder="Username">
             </div>
+
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" name ="password"  placeholder="Password">
             </div>
+
             <div class="form-group">
               <label for="level">User Role</label>
                 <select class="form-control" name="level">
@@ -70,15 +86,16 @@
                 <?php endforeach;?>
                 </select>
             </div>
+            
             <div class="form-group clearfix">
-              <button type="submit" name="add_user" class="btn btn-primary">Add User</button>
+              <button type="submit" name="add_user" class="btn btn-primary pull-right btn-sm"><span class="fa fa-check"></span> Done</button>
             </div>
         </form>
         </div>
-
       </div>
-
     </div>
   </div>
 
 <?php include_once('layouts/footer.php'); ?>
+
+

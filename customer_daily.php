@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Daily Sales';
+  $page_title = 'Daily Record';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(3);
@@ -28,8 +28,8 @@
       <div class="panel panel-default">
         <div class="panel-heading clearfix">
           <strong>
-            
-            <span>Daily Sales</span>
+            <span class="fa fa-calendar-times-o"></span>
+            <span>Daily Order</span>
           </strong>
         </div>
         <div class="panel-body">

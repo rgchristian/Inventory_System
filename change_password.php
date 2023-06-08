@@ -24,10 +24,10 @@
             $result = $db->query($sql);
                 if($result && $db->affected_rows() === 1):
                   $session->logout();
-                  $session->msg('s',"Login with your new password.");
+                  $session->msg('s', "Password successfully changed.");
                   redirect('index.php', false);
                 else:
-                  $session->msg('d',' Sorry failed to updated!');
+                  $session->msg('d', 'Failed to change password.');
                   redirect('change_password.php', false);
                 endif;
     } else {
@@ -37,24 +37,52 @@
   }
 ?>
 <?php include_once('layouts/header.php'); ?>
-<div class="login-page">
-    <div class="text-center">
-       <h3>Change your password</h3>
+
+<style>
+  body {
+    background-color: #DDDDDD;
+    }
+</style>
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"">
+
+<div class="row">
+     <div class="col-md-12">
+       <?php echo display_msg($msg); ?>
      </div>
-     <?php echo display_msg($msg); ?>
-      <form method="post" action="change_password.php" class="clearfix">
-        <div class="form-group">
-              <label for="newPassword" class="control-label">New password</label>
+  </div>
+   <div class="row">
+    <div class="col-md-5">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>
+            
+            <span>Change Password</span>
+          </strong>
+        </div>
+
+        <div class="panel-body">
+          <form method="post" action="change_password.php">
+          <div class="form-group">
+              <label for="newPassword" class="control-label">Input New password</label>
               <input type="password" class="form-control" name="new-password" placeholder="New password">
         </div>
+
         <div class="form-group">
-              <label for="oldPassword" class="control-label">Old password</label>
+              <label for="oldPassword" class="control-label">Input Old password</label>
               <input type="password" class="form-control" name="old-password" placeholder="Old password">
         </div>
         <div class="form-group clearfix">
                <input type="hidden" name="id" value="<?php echo (int)$user['id'];?>">
-                <button type="submit" name="update" class="btn btn-info">Change</button>
+                <button type="submit" name="update" class="btn btn-primary btn-block"><span class="fa fa-check"></span> Save Changes</button>
         </div>
     </form>
 </div>
+
 <?php include_once('layouts/footer.php'); ?>
+
+
+
+
+
+            

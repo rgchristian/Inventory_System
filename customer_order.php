@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Product Stock-Out';
+  $page_title = 'Order Product';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(3);
@@ -24,15 +24,15 @@
 
                 if($db->query($sql)){
                   update_product_qty($s_qty,$p_id);
-                  $session->msg('s', "Sale successfully recorded.");
-                  redirect('add_sale.php', false);
+                  $session->msg('s', "Product ordered successfully.");
+                  redirect('customer_order.php', false);
                 } else {
                   $session->msg('d', 'Failed to record sale.');
-                  redirect('add_sale.php', false);
+                  redirect('customer_order.php', false);
                 }
         } else {
            $session->msg("d", $errors);
-           redirect('add_sale.php',false);
+           redirect('customer_order.php',false);
         }
   }
 
@@ -54,33 +54,33 @@
             <span class="input-group-btn">
               <button type="submit" class="btn btn-primary btn-sm"><span class="fa fa-search"></span> Search</button>
             </span>
-            <input type="text" id="sug_input" class="form-control" name="title" placeholder="Search for product name to stock-out.">
+            <input type="text" id="sug_input" class="form-control" name="title" placeholder="Search for product name">
          </div>
          <div id="result" class="list-group"></div>
         </div>
     </form>
   </div>
 </div>
-
 <div class="row">
+
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
         <strong>
-          
-          <span>Add Product to Stock-Out</span>
+          <span class="fa fa-cart-plus"></span>
+          <span>Order Product</span>
        </strong>
       </div>
       <div class="panel-body">
-        <form method="post" action="add_sale.php">
+        <form method="post" action="customer_order.php">
          <table class="table table-bordered">
            <thead>
-            <th class="text-center"> Item </th>
-            <th class="text-center"> Price </th>
-            <th class="text-center"> Quantity </th>
-            <th class="text-center"> Total </th>
-            <th class="text-center"> Date </th>
-            <th class="text-center"> Action </th>
+            <th> Item </th>
+            <th> Price </th>
+            <th> Quantity </th>
+            <th> Total </th>
+            <th> Date</th>
+            <th> Action</th>
            </thead>
              <tbody id="product_info"> </tbody>
          </table>

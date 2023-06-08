@@ -12,11 +12,11 @@ if(empty($errors)){
      $session->login($user_id);
     //Update Sign in time
      updateLastLogIn($user_id);
-     $session->msg("s", "Welcome to Inventory Management System");
-     redirect('admin.php',false);
+     $session->msg("s", "");
+     redirect('home.php',false);
 
   } else {
-    $session->msg("d", "Sorry Username/Password incorrect.");
+    $session->msg("d", "Sorry Username/Password is incorrect.");
     redirect('index.php',false);
   }
 
