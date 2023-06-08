@@ -7,7 +7,7 @@
            echo remove_junk($page_title);
             elseif(!empty($user))
            echo ucfirst($user['name']);
-            else echo "Inventory Management System";?>
+            else echo "Tile Shop";?>
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
@@ -19,13 +19,13 @@
   <?php  if ($session->isUserLoggedIn(true)): ?>
     
     <header id="header" style="background-color: #FFFFFF;">
-      <div class="logo pull-left" style="background-color: #567189;"><i class="fa fa-cubes">&nbsp;</i>Inventory System</div>
+      <div class="logo pull-left"><i class="fa fa-cubes">&nbsp;</i>Tile Shop</div>
       <div class="header-content">
       <div class="header-date pull-left">
         
       <?php
         date_default_timezone_set('Asia/Manila');
-        $dateTime = date('D, F j, Y - g:ia');
+        $dateTime = date("M j, Y, g:i a");
       ?>
 
         <strong>
@@ -42,7 +42,7 @@
             <ul class="dropdown-menu">
               <li>
                   <a href="profile.php?id=<?php echo (int)$user['id'];?>">
-                      <i class="fa fa-user-circle-o"></i>
+                      <i class="glyphicon glyphicon-user"></i>
                       Profile
                   </a>
               </li>

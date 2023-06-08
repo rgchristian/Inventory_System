@@ -7,7 +7,7 @@ body{
   height: 100%;
   width: 100%;
 }a{
-  color #777;
+  color: #777;
   text-decoration: none;
 }.padding-top{
   padding-top: 20px;
@@ -113,7 +113,7 @@ body{
     letter-spacing: 1px;
     display: inline-block;
     width: 250px;
-    background-color: #db3434;
+    background-color:#281c54;
 }.header-date{
   color: #9b9b9b;
   margin-left: 20px;
