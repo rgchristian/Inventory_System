@@ -33,8 +33,8 @@ if (isset($_POST['add_product'])) {
     $query .= ")";
     $query .= " ON DUPLICATE KEY UPDATE name='{$p_name}', tile_size='{$p_size}'";
     if ($db->query($query)) {
-      $session->msg('s', "Product successfully added.");
-      redirect('add_product.php', false);
+      $session->msg('s', "Product added successfully.");
+      redirect('product.php', false);
     } else {
       $session->msg('d', 'Failed to add product.');
       redirect('product.php', false);
@@ -62,11 +62,14 @@ if (isset($_POST['add_product'])) {
 
 <div class="row">
   <div class="col-md-8">
-    <div class="panel panel-default">
-      <div class="panel-heading">
+    <div class="panel panel-info">
+      <div class="panel-heading clearfix">
         <strong>
-          <span>Add New Product</span>
+          <span >Add New Tile Product</span>
         </strong>
+        <div class="pull-right">
+          <a href="product.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Back"><span class="fas fa-arrow-left"></span></a>
+        </div>
       </div>
       <div class="panel-body">
         <div class="col-md-12">
@@ -77,16 +80,18 @@ if (isset($_POST['add_product'])) {
                 <div class="col-md-9">
                   <div class="input-group">
                     <span class="input-group-addon">
-                      <i class="fa fa-pencil"></i>
+                      <i class="fas fa-pencil-alt" style="color: #666666;"></i>
                     </span>
-                    <input type="text" class="form-control" name="product-title" placeholder="Product Title">
+                    <input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Input new product name" name="product-title" placeholder="Product Title">
                   </div>
                 </div>
                 <div class="col-md-3">
                   <div class="input-group">
-                    <select class="form-control" name="tile-size" style="width: 116%;">
-                      <option value="">Select Tile Size</option>
-                      <!-- Add the options for different tile sizes here -->
+                  <span class="input-group-addon">
+                      <i class="fas fa-expand-arrows-alt" style="color: #666666;"></i>
+                    </span>
+                    <select class="form-control" data-toggle="tooltip" data-placement="bottom" title="Select tile size" name="tile-size">
+                      <option value="">Tile Size</option>
                       <option value="10x10">10x10</option>
                       <option value="20x20">20x20</option>
                       <option value="30x30">30x30</option>
@@ -97,76 +102,92 @@ if (isset($_POST['add_product'])) {
             </div>
 
             <div class="form-group">
-              <div class="row">
-                <div class="col-md-6">
-                  <select class="form-control" name="product-categorie">
-                    <option value="">Select Product Category</option>
-                    <?php foreach ($all_categories as $cat) : ?>
-                      <option value="<?php echo (int) $cat['id'] ?>">
-                        <?php echo $cat['name'] ?></option>
-                    <?php endforeach; ?>
-                  </select>
-                </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fas fa-th-large" style="color: #666666;"></i>
+        </span>
+        <select class="form-control" data-toggle="tooltip" data-placement="bottom" title="Select tile type" name="product-categorie">
+          <option value="">Tile Type</option>
+          <?php foreach ($all_categories as $cat) : ?>
+            <option value="<?php echo (int) $cat['id'] ?>">
+              <?php echo $cat['name'] ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+    </div>
 
-                <div class="col-md-6">
-                  <select class="form-control" name="product-photo">
-                    <option value="">Select Product Photo</option>
-                    <?php foreach ($all_photo as $photo) : ?>
-                      <option value="<?php echo (int) $photo['id'] ?>">
-                        <?php echo $photo['file_name'] ?></option>
-                    <?php endforeach; ?>
-                  </select>
-                </div>
-              </div>
-            </div>
+    <div class="col-md-6">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fas fa-image" style="color: #666666;"></i>
+        </span>
+        <select class="form-control" data-toggle="tooltip" data-placement="bottom" title="Select product photo" name="product-photo">
+          <option value="">Product Photo</option>
+          <?php foreach ($all_photo as $photo) : ?>
+            <option value="<?php echo (int) $photo['id'] ?>">
+              <?php echo $photo['file_name'] ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
 
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="glyphicon glyphicon-shopping-cart"></i>
-                    </span>
-                    <input type="number" class="form-control" name="product-quantity" placeholder="Product Quantity">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="fa fa-money"></i>
-                    </span>
-                    <input type="number" class="form-control" name="buying-price" placeholder="Buying Price">
-                    <span class="input-group-addon">.00</span>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="fa fa-tag"></i>
-                    </span>
-                    <input type="number" class="form-control" name="saleing-price" placeholder="Selling Price">
-                    <span class="input-group-addon">.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+<div class="form-group">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fas fa-shopping-cart" style="color: #666666;"></i>
+        </span>
+        <input type="number" data-toggle="tooltip" data-placement="bottom" title="Input product quantity" class="form-control" name="product-quantity" placeholder="Product Quantity">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fas fa-money" style="color: #666666;"></i>
+        </span>
+        <input type="number" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Input product buying price" name="buying-price" placeholder="Buying Price">
+        <span class="input-group-addon">.00</span>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fas fa-tag" style="color: #666666;"></i>
+        </span>
+        <input type="number" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Input product selling price" name="saleing-price" placeholder="Selling Price">
+        <span class="input-group-addon">.00</span>
+      </div>
+    </div>
+  </div>
+</div>
 
-            <div class="form-group">
-              <div class="row">
-                <div class="col-md-6">
-                  <select class="form-control" name="supplier">
-                    <option value="">Select Supplier</option>
-                    <?php foreach ($all_suppliers as $sup) : ?>
-                      <option value="<?php echo (int) $sup['id'] ?>">
-                        <?php echo $sup['supp_name'] ?></option>
-                    <?php endforeach; ?>
-                  </select>
-                </div>
-              </div>
-            </div>
+<div class="form-group">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fas fa-truck" style="color: #666666;"></i>
+        </span>
+        <select class="form-control"  data-toggle="tooltip" data-placement="bottom" title="Select supplier" name="supplier">
+          <option value="">Supplier</option>
+          <?php foreach ($all_suppliers as $sup) : ?>
+            <option value="<?php echo (int) $sup['id'] ?>">
+              <?php echo $sup['supp_name'] ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
 
-            <button type="submit" name="add_product" class="btn btn-primary pull-right btn-sm">
-              <span class="fa fa-check"></span> Done
+
+            <button type="submit" name="add_product" class="btn custom-primary-btn pull-right btn-sm" data-toggle="tooltip" data-placement="bottom" title="Done">
+              <span class="fas fa-check"></span> Done
             </button>
 
           </form>

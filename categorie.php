@@ -2,7 +2,7 @@
   $page_title = 'Product Category';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
-  page_require_level(1);
+  page_require_level(2);
   
   $all_categories = find_all('categories')
 ?>
@@ -15,7 +15,7 @@
       $sql  = "INSERT INTO categories (name)";
       $sql .= " VALUES ('{$cat_name}')";
       if($db->query($sql)){
-        $session->msg("s", "Successfully added new category.");
+        $session->msg("s", "Category successfully added.");
         redirect('categorie.php',false);
       } else {
         $session->msg("d", "Failed to add new category.");
@@ -42,38 +42,45 @@
   </div>
    <div class="row">
     <div class="col-md-5">
-      <div class="panel panel-default">
+      <div class="panel panel-info">
         <div class="panel-heading">
           <strong>
             
-            <span>Category</span>
+            <span >Add New Tile Type</span>
           </strong>
         </div>
         <div class="panel-body">
           <form method="post" action="categorie.php">
-            <div class="form-group">
-                <input type="text" class="form-control" name="category-name" placeholder="Category Name">
-            </div>
-            <button type="submit" name="add_cat" class="btn btn-primary pull-right btn-sm"><span class="fa fa-check"></span> Done</button>
+          <div class="form-group">
+          <label style="color: #7f7f7f;">Tile Type</label>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fas fa-th-large" style="color: #666666;"></i>
+    </span>
+    <input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Input tile type name" name="category-name" placeholder="Tile Type Name"> 
+  </div>
+</div>
+
+            <button type="submit" name="add_cat" class="btn custom-primary-btn pull-right btn-sm" data-toggle="tooltip" data-placement="bottom" title="Done"><span class="fas fa-check"></span> Done</button>
         </form>
         </div>
       </div>
     </div>
     
     <div class="col-md-7">
-    <div class="panel panel-default">
+    <div class="panel panel-info">
       <div class="panel-heading">
         <strong>
           
-          <span>All Categories</span>
+          <span >All Tile Types</span>
        </strong>
       </div>
         <div class="panel-body">
-          <table class="table table-bordered table-striped table-hover">
+          <table class="table table-bordered" style="color: #567189;">
             <thead>
                 <tr>
                     <th class="text-center" style="width: 50px;">#</th>
-                    <th>Categories</th>
+                    <th>Tile Type</th>
                     <th class="text-center" style="width: 100px;">Actions</th>
                 </tr>
 
@@ -85,11 +92,11 @@
                     <td><?php echo remove_junk(ucfirst($cat['name'])); ?></td>
                     <td class="text-center">
                       <div class="btn-group">
-                        <a href="edit_categorie.php?id=<?php echo (int)$cat['id'];?>"  class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
-                          <span class="fa fa-pencil-square-o"></span>
+                        <a class="text-center" href="edit_categorie.php?id=<?php echo (int)$cat['id'];?>"  class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit tile type">
+                          <span class="fas fa-pencil-square-o" style="color: #567189;"></span>
                         </a>
-                        <a href="delete_categorie.php?id=<?php echo (int)$cat['id'];?>"  class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
-                          <span class="fa fa-trash"></span>
+                        <a class="text-center" href="delete_categorie.php?id=<?php echo (int)$cat['id'];?>"  class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove tile type">
+                          <span class="fas fa-trash" style="color: #567189;"></span>
                         </a>
                       </div>
                     </td>

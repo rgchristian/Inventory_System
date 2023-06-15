@@ -27,7 +27,7 @@
                   $session->msg('s', "Product ordered successfully.");
                   redirect('customer_order.php', false);
                 } else {
-                  $session->msg('d', 'Failed to record sale.');
+                  $session->msg('d', 'Failed to order product.');
                   redirect('customer_order.php', false);
                 }
         } else {
@@ -52,7 +52,7 @@
         <div class="form-group">
           <div class="input-group">
             <span class="input-group-btn">
-              <button type="submit" class="btn btn-primary btn-sm"><span class="fa fa-search"></span> Search</button>
+              <button type="submit" class="btn custom-primary-btn btn-sm"><span class="fas fa-search"></span> Search</button>
             </span>
             <input type="text" id="sug_input" class="form-control" name="title" placeholder="Search for product name">
          </div>
@@ -64,16 +64,19 @@
 <div class="row">
 
   <div class="col-md-12">
-    <div class="panel panel-default">
+    <div class="panel panel-info">
       <div class="panel-heading clearfix">
         <strong>
-          <span class="fa fa-cart-plus"></span>
+          
           <span>Order Product</span>
        </strong>
+       <div class="pull-right">
+          <a href="customer_shop.php" class="btn custom-primary-btn btn-sm"><span class="fas fa-arrow-left"></span></a>
+        </div>
       </div>
       <div class="panel-body">
         <form method="post" action="customer_order.php">
-         <table class="table table-bordered">
+         <table class="table table-bordered" style="color: #567189;">
            <thead>
             <th> Item </th>
             <th> Price </th>

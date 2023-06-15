@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Sell Product';
+  $page_title = 'Search & Sell Product';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(3);
@@ -54,21 +54,13 @@
             <span class="input-group-btn">
               <button type="submit" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Search product"><span class="fas fa-search"></span> Search</button>
             </span>
-            <?php
-            // Retrieve the product name from the database
-            $product_name = ''; // Initialize the variable
-            if (isset($product['name'])) {
-              $product_name = remove_junk($product['name']);
-            }
-            ?>
-            <input type="text" id="sug_input" data-toggle="tooltip" data-placement="bottom" title="Input product name" class="form-control" name="title" value="<?php echo $product_name; ?>">
+            <input type="text" id="sug_input" data-toggle="tooltip" data-placement="bottom" title="Input product name" class="form-control" name="title" placeholder="Search for product name to sell">
          </div>
          <div id="result" class="list-group"></div>
         </div>
     </form>
   </div>
 </div>
-
 
 <div class="row">
   <div class="col-md-12">
@@ -79,7 +71,7 @@
           <span >Sell Product</span>
        </strong>
        <div class="pull-right">
-          <a href="product.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Back"><span class="fas fa-arrow-left"></span></a>
+          <a href="sales.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Back"><span class="fas fa-arrow-left"></span></a>
         </div>
       </div>
       <div class="panel-body">

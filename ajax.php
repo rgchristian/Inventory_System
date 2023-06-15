@@ -25,6 +25,7 @@
 
       echo json_encode($html);
    }
+   
  ?>
  <?php
  // find all product
@@ -45,7 +46,7 @@
           $html  .= "<input type=\"text\" class=\"form-control\" name=\"price\" value=\"{$result['sale_price']}\">";
           $html  .= "</td>";
           $html .= "<td id=\"s_qty\">";
-          $html .= "<input type=\"text\" class=\"form-control\" name=\"quantity\" value=\"1\">";
+          $html .= "<input type=\"text\" class=\"form-control\" name=\"quantity\" value=\"\">";
           $html  .= "</td>";
           $html  .= "<td>";
           $html  .= "<input type=\"text\" class=\"form-control\" name=\"total\" value=\"{$result['sale_price']}\">";
@@ -55,13 +56,19 @@
           $html  .= "</td>";
 
           $html .= "<td style=\"text-align: center;\">";
-          $html  .= "<button type=\"submit\" name=\"add_sale\" class=\"btn btn-primary btn-sm\">Stock-Out</button>";
+          $html  .= "<button type=\"submit\" name=\"add_sale\" class=\"btn custom-primary-btn btn-sm\ data-toggle=\"tooltip\" data-placement=\"bottom\" title=\"Sell product\">Sell</button>";
           $html  .= "</td>";
           $html  .= "</tr>";
 
         }
     } else {
-        $html ='<tr><td>Product does not exist.</td></tr>';
+        $html ='<tr><td>Product does not exist.</td>
+        <td>Product price is unknown.</td>
+        <td>Product quantity is unknown.</td>
+        <td>Total is unknown.</td>
+        <td>Product added is unknown.</td>
+        <td>Product is unknown.</td>
+        </tr>';
     }
 
     echo json_encode($html);

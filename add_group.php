@@ -29,7 +29,7 @@
         $query .=")";
         if($db->query($query)){
           //sucess
-          $session->msg('s',"Role successfully added.");
+          $session->msg('s',"Role added successfully.");
           redirect('add_group.php', false);
         } else {
           //failed
@@ -50,6 +50,15 @@
   body {
     background-color: #DDDDDD;
     }
+    .custom-primary-btn {
+    background-color: #567189;
+    color: white;
+    
+  }
+  .custom-primary-btn:hover {
+    background-color: white;
+    border-color: black;
+  }
 </style>
 
 <div class="row">
@@ -59,35 +68,56 @@
   </div>
    <div class="row">
     <div class="col-md-5">
-      <div class="panel panel-default">
-        <div class="panel-heading">
+      <div class="panel panel-info">
+        <div class="panel-heading clearfix">
           <strong>
             
-            <span>Add New Role</span>
+            <span >Add New Role</span>
           </strong>
+
+          <div class="pull-right">
+          <a href="group.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Back"><span class="fas fa-arrow-left"></span></a>
         </div>
+      </div>
+        
 
         <div class="panel-body">
           <form method="post" action="add_group.php">
           <div class="form-group">
-              <label for="name" class="control-label"> Role Name</label>
-              <input type="name" class="form-control" name="group-name" placeholder="Role Name">
-        </div>
+          <label style="color: #567189;" for="status">Role Name</label>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fas fa-pencil-alt" style="color: #567189;"></i>
+    </span>
+    <input type="text" class="form-control" name="group-name" data-toggle="tooltip" data-placement="bottom" title="Input new role name" placeholder="Role Name">
+  </div>
+</div>
+
+<div class="form-group">
+<label style="color: #567189;" for="status">Access Level</label>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fas fa-key" style="color: #567189;"></i>
+    </span>
+    <input type="number" class="form-control" name="group-level" data-toggle="tooltip" data-placement="bottom" title="Input access role level (must be 1-3)" placeholder="Role Level">
+  </div>
+</div>
+
+<div class="form-group">
+  <label style="color: #567189;" for="status">Status</label>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fas fa-toggle-on" style="color: #567189;"></i>
+    </span>
+  <select class="form-control" data-toggle="tooltip" data-placement="bottom" title="Activate/Deactivate role" name="status">
+    <option value="1">Active</option>
+    <option value="0">Inactive</option>
+  </select>
+</div>
+</div>
 
         <div class="form-group">
-              <label for="level" class="control-label"> Role Level</label>
-              <input type="number" class="form-control" name="group-level" placeholder="Role Level">
-        </div>
-
-        <div class="form-group">
-          <label for="status">Status</label>
-            <select class="form-control" name="status">
-              <option value="1">Active</option>
-              <option value="0">Inactive</option>
-            </select>
-        </div>
-        <div class="form-group clearfix">
-                <button type="submit" name="add" class="btn btn-primary pull-right btn-sm"><span class="fa fa-check"></span> Done</button>
+        <button type="submit" name="add" class="btn custom-primary-btn pull-right btn-sm" data-toggle="tooltip" data-placement="bottom" title="Done"><span class="fas fa-check"></span> Done</button>
         </div>
     </form>
 </div>

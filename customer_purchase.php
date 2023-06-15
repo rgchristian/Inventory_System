@@ -22,18 +22,18 @@ $sales = find_all_sale();
 </div>
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
+      <div class="panel panel-info">
         <div class="panel-heading clearfix">
           <strong>
-            <span class="fa fa-cart-arrow-down"></span>
+            
             <span>Purchased Products</span>
           </strong>
           <div class="pull-right">
-            <a href="customer_order.php" class="btn btn-primary btn-sm"><span class="fa fa-plus"></span> Order Product</a>
+            <a href="customer_shop.php" class="btn custom-primary-btn btn-sm"><span class="fas fa-plus"></span> Order Product</a>
           </div>
         </div>
         <div class="panel-body">
-          <table class="table table-bordered table-striped">
+          <table class="table table-bordered" style="color: #567189;">
             <thead>
               <tr>
                 <th class="text-center" style="width: 50px;">#</th>
@@ -55,10 +55,10 @@ $sales = find_all_sale();
                <td class="text-center">
                   <div class="btn-group">
                      
-                     <a href="delete_sale.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-danger btn-xs"  title="Remove" data-toggle="tooltip">
-                       <span class="fa fa-trash-o"></span>
-                     </a>
-                  </div>
+                  <a class="text-center" href="delete_sale.php?id=<?php echo (int)$sale['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
+                  <i class="fas fa-trash" style="color: #567189;"></i>
+                </a>
+                </div>
                </td>
              </tr>
              <?php endforeach;?>
@@ -69,3 +69,5 @@ $sales = find_all_sale();
     </div>
   </div>
 <?php include_once('layouts/footer.php'); ?>
+
+

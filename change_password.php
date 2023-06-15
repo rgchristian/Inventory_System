@@ -24,7 +24,7 @@
             $result = $db->query($sql);
                 if($result && $db->affected_rows() === 1):
                   $session->logout();
-                  $session->msg('s', "Password successfully changed.");
+                  $session->msg('s', "Password changed successfully.");
                   redirect('index.php', false);
                 else:
                   $session->msg('d', 'Failed to change password.');
@@ -53,28 +53,43 @@
   </div>
    <div class="row">
     <div class="col-md-5">
-      <div class="panel panel-default">
-        <div class="panel-heading">
+      <div class="panel panel-info">
+        <div class="panel-heading clearfix">
           <strong>
             
-            <span>Change Password</span>
+            <span >Change Password</span>
           </strong>
+
+          <div class="pull-right">
+          <a href="edit_account.php" class="btn custom-primary-btn btn-sm pull-right" data-toggle="tooltip" data-placement="bottom" title="Back"><span class="fas fa-arrow-left"></span></a>
+        </div>
         </div>
 
         <div class="panel-body">
           <form method="post" action="change_password.php">
           <div class="form-group">
-              <label for="newPassword" class="control-label">Input New password</label>
-              <input type="password" class="form-control" name="new-password" placeholder="New password">
-        </div>
+  <label style="color: #7f7f7f;" for="newPassword" class="control-label">Input New password</label>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fas fa-lock" style="color: #666666;"></i>
+    </span>
+    <input type="password" data-toggle="tooltip" data-placement="bottom" title="Input new password" class="form-control" name="new-password" placeholder="New password">
+  </div>
+</div>
+
+<div class="form-group">
+  <label style="color: #7f7f7f;" for="oldPassword" class="control-label">Input Old password</label>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fas fa-lock-open" style="color: #666666;"></i>
+    </span>
+    <input type="password" data-toggle="tooltip" data-placement="bottom" title="Input old password" class="form-control" name="old-password" placeholder="Old password">
+  </div>
+</div>
 
         <div class="form-group">
-              <label for="oldPassword" class="control-label">Input Old password</label>
-              <input type="password" class="form-control" name="old-password" placeholder="Old password">
-        </div>
-        <div class="form-group clearfix">
                <input type="hidden" name="id" value="<?php echo (int)$user['id'];?>">
-                <button type="submit" name="update" class="btn btn-primary btn-block"><span class="fa fa-check"></span> Save Changes</button>
+                <button type="submit" name="update" class="btn custom-primary-btn pull-right btn-sm" data-toggle="tooltip" data-placement="bottom" title="Save changes"><span class="fas fa-check"></span> Save Changes</button>
         </div>
     </form>
 </div>

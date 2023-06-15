@@ -25,15 +25,15 @@
 </div>
   <div class="row">
     <div class="col-md-12">
-      <div class="panel panel-default">
+      <div class="panel panel-info">
         <div class="panel-heading clearfix">
           <strong>
-            <span class="fa fa-calendar-times-o"></span>
+            
             <span>Daily Order</span>
           </strong>
         </div>
         <div class="panel-body">
-          <table class="table table-bordered table-striped">
+          <table class="table table-bordered" style="color: #567189;">
             <thead>
               <tr>
                 <th class="text-center" style="width: 50px;">#</th>

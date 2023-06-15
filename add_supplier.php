@@ -25,8 +25,8 @@
         $query .=")";
         if($db->query($query)){
           //sucess
-          $session->msg("s", 'Supplier successfully added.');
-          redirect('add_supplier.php', false);
+          $session->msg("s", 'Supplier added successfully.');
+          redirect('supplier.php', false);
         } else {
           //failed
           $session->msg("d", "Failed to add supplier.");
@@ -51,46 +51,74 @@
 
    <div class="row">
     <div class="col-md-5">
-      <div class="panel panel-default">
-        <div class="panel-heading">
+      <div class="panel panel-info">
+        <div class="panel-heading clearfix">
           <strong>
             
-            <span>Add New Supplier</span>
+            <span >Add New Supplier</span>
           </strong>
+          <div class="pull-right">
+          <a href="supplier.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Back"><span class="fas fa-arrow-left"></span></a>
         </div>
+      </div>
 
         <div class="panel-body">
           <form method="post" action="add_supplier.php">
 
           <form method="post" action="add_supplier.php">
   <div class="form-group">
-    <label for="">Name</label>
-    <input type="text" class="form-control" name="supplier-name" placeholder="Supplier Name">
+    <label style="color: #7f7f7f;" for="">Name</label>
+    <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fas fa-pencil-alt" style="color: #666666;"></i>
+    </span>
+    <input type="text" class="form-control" name="supplier-name" data-toggle="tooltip" data-placement="bottom" title="Input supplier's name" placeholder="Supplier Name">
+  </div>
   </div>
 
   <div class="form-group">
-    <label for="">Company Name</label>
-    <input type="text" class="form-control" name="company-name" placeholder="Company Name">
+    <label style="color: #7f7f7f;" for="">Company Name</label>
+    <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fas fa-suitcase" style="color: #666666;"></i>
+    </span>
+    <input type="text" class="form-control" name="company-name" data-toggle="tooltip" data-placement="bottom" title="Input supplier's company name" placeholder="Company Name">
+  </div>
   </div>
 
   <div class="form-group">
-    <label for="">Address</label>
-    <input type="text" class="form-control" name="supplier-address" placeholder="Company Address">
+    <label style="color: #7f7f7f;" for="">Address</label>
+    <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fas fa-location-arrow" style="color: #666666;"></i>
+    </span>
+    <input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Input supplier's comapny address" name="supplier-address" placeholder="Company Address">
+  </div>
   </div>
 
   <div class="form-group">
-    <label for="">Email</label>
-    <input type="text" class="form-control" name="email" placeholder="Company Email">
+    <label style="color: #7f7f7f;" for="">Email</label>
+    <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fas fa-envelope" style="color: #666666;"></i>
+    </span>
+    <input type="text" class="form-control" name="email" data-toggle="tooltip" data-placement="bottom" title="Input supplier's contact email" placeholder="Company Email">
+  </div>
   </div>
 
   <div class="form-group">
-    <label for="">Phone</label>
-    <input type="text" class="form-control" name="phone" placeholder="Company Phone Number">
+    <label style="color: #7f7f7f;" for="">Phone</label>
+    <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fas fa-phone-alt" style="color: #666666;"></i>
+    </span>
+    <input type="text" class="form-control" name="phone" data-toggle="tooltip" data-placement="bottom" title="Input supplier's contact number" placeholder="Company Phone Number">
+  </div>
   </div>
 
-  <div class="form-group clearfix">
-    <button type="submit" name="add_supplier" class="btn btn-primary pull-right btn-sm">
-      <span class="fa fa-check"></span> Done
+  <div class="form-group">
+    <button type="submit" name="add_supplier" class="btn custom-primary-btn pull-right btn-sm" data-toggle="tooltip" data-placement="bottom" title="Done">
+      <span class="fas fa-check"></span> Done
     </button>
   </div>
 </form>

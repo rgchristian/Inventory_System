@@ -6,6 +6,10 @@
   $groups = find_all('user_groups');
 ?>
 
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
 <?php
   if(isset($_POST['add_user'])){
 
@@ -25,8 +29,8 @@
         $query .=")";
         if($db->query($query)){
           //sucess
-          $session->msg("s", 'User successfully added.');
-          redirect('add_user.php', false);
+          $session->msg("s", 'User added successfully.');
+          redirect('users.php', false);
         } else {
           //failed
           $session->msg("d", "Failed to add user.");
@@ -39,11 +43,9 @@
  }
 ?>
 
-
-
 <?php include_once('layouts/header.php'); ?>
 
-  <?php echo display_msg($msg); ?>
+
   <div class="row">
      <div class="col-md-12">
        <?php echo display_msg($msg); ?>
@@ -52,49 +54,67 @@
 
    <div class="row">
     <div class="col-md-5">
-      <div class="panel panel-default">
-        <div class="panel-heading">
+      <div class="panel panel-info">
+        <div class="panel-heading clearfix">
           <strong>
             
-            <span>Add New User</span>
+            <span >Add New User</span>
           </strong>
+          <div class="pull-right">
+          <a href="users.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Back"><span class="fas fa-arrow-left"></span></a>
         </div>
+      </div>
 
         <div class="panel-body">
           <form method="post" action="add_user.php">
 
           <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" name="full-name" placeholder="Full Name">
-          </div>
+    <label style="color: #7f7f7f;" for="name">Name</label>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fas fa-pencil-alt" style="color: #666666;"></i></span>
+        <input type="text" class="form-control" name="full-name" data-toggle="tooltip" data-placement="bottom" title="Input user's full name" placeholder="Full Name">
+    </div>
+</div>
 
-          <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" placeholder="Username">
-            </div>
+<div class="form-group">
+    <label style="color: #7f7f7f;" for="username">Username</label>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fas fa-user" style="color: #666666;"></i></span>
+        <input type="text" class="form-control" name="username" data-toggle="tooltip" data-placement="bottom" title="Input user's username" placeholder="Username">
+    </div>
+</div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" name ="password"  placeholder="Password">
-            </div>
+<div class="form-group">
+    <label style="color: #7f7f7f;" for="password">Password</label>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fas fa-lock" style="color: #666666;"></i></span>
+        <input type="password" class="form-control" name="password" data-toggle="tooltip" data-placement="bottom" title="Input user's password" placeholder="Password">
+    </div>
+</div>
 
-            <div class="form-group">
-              <label for="level">User Role</label>
-                <select class="form-control" name="level">
-                  <?php foreach ($groups as $group ):?>
-                   <option value="<?php echo $group['group_level'];?>"><?php echo ucwords($group['group_name']);?></option>
-                <?php endforeach;?>
-                </select>
-            </div>
+<div class="form-group">
+    <label style="color: #7f7f7f;" for="level">User Role</label>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fas fa-user-check" style="color: #666666;"></i></span>
+        <select class="form-control" data-toggle="tooltip" data-placement="bottom" title="Select the user's access level" name="level">
+            <?php foreach ($groups as $group ):?>
+                <option value="<?php echo $group['group_level'];?>"><?php echo ucwords($group['group_name']);?></option>
+            <?php endforeach;?>
+        </select>
+    </div>
+</div>
+
             
-            <div class="form-group clearfix">
-              <button type="submit" name="add_user" class="btn btn-primary pull-right btn-sm"><span class="fa fa-check"></span> Done</button>
+            <div class="form-group">
+              <button type="submit" name="add_user" class="btn custom-primary-btn pull-right btn-sm" data-toggle="tooltip" data-placement="bottom" title="Done"><span class="fas fa-check"></span> Done</button>
             </div>
         </form>
         </div>
-      </div>
-    </div>
-  </div>
+        </div>
+      
+      
+   
+  
 
 <?php include_once('layouts/footer.php'); ?>
 

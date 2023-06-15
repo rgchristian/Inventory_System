@@ -10,7 +10,7 @@
   $photo = new Media();
   $photo->upload($_FILES['file_upload']);
     if($photo->process_media()){
-        $session->msg('s','Photo successfully added.');
+        $session->msg('s','Photo added successfully.');
         redirect('media.php');
     } else{
       $session->msg('d',join($photo->errors));
@@ -34,10 +34,10 @@
         </div>
 
       <div class="col-md-12">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
           <div class="panel-heading clearfix">
             <strong>
-            <span class="fa fa-delicious"></span>
+            
             <span>Products</span>
             </strong>
             <div class="pull-right">
@@ -57,7 +57,7 @@
           </div>
           
           <div class="panel-body">
-            <table class="table table-bordered">
+            <table class="table table-bordered" style="color: #567189;">
               <thead>
                 <tr>
                   <th class="text-center" style="width: 50px;">#</th>
