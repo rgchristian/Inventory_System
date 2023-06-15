@@ -30,10 +30,10 @@ if (isset($_POST['update_sale'])) {
     $result = $db->query($sql);
     if ($result && $db->affected_rows() === 1) {
       update_product_qty($s_qty, $p_id);
-      $session->msg('s', "Sale successfully updated.");
+      $session->msg('s', "Sale record successfully updated.");
       redirect('edit_sale.php?id=' . $sale['id'], false);
     } else {
-      $session->msg('d', ' Failed to update sale.');
+      $session->msg('d', ' Failed to update sale record.');
       redirect('sales.php', false);
     }
   } else {
@@ -52,15 +52,15 @@ if (isset($_POST['update_sale'])) {
 
 <div class="row">
   <div class="col-md-12">
-    <div class="panel panel-default">
+    <div class="panel panel-info">
       <div class="panel-heading clearfix">
         <strong>
           
-          <span>Edit Sales</span>
+          <span >Edit Sales</span>
         </strong>
 
         <div class="pull-right">
-          <a href="sales.php" class="btn btn-primary btn-sm"><span class="fa fa-wpforms"></span> Show all sales</a>
+        <a href="sales.php" class="btn custom-primary-btn btn-sm pull-right" data-toggle="tooltip" data-placement="bottom" title="Back"><span class="fas fa-arrow-left"></span></a>
         </div>
       </div>
 
@@ -75,30 +75,30 @@ if (isset($_POST['update_sale'])) {
                 <th class="text-center" style="width: 15%;"> Price</th>
                 <th class="text-center" style="width: 15%;"> Total </th>
                 <th class="text-center" style="width: 15%;"> Date </th>
-                <th class="text-center" style="width: 100px;"> Actions </th>
+                <th class="text-center" style="width: 100px;"> Action </th>
               </tr>
             </thead>
 
             <tbody id="product_info">
               <tr>
                 <td id="s_name">
-                  <input type="text" class="form-control" id="sug_input" name="title" value="<?php echo remove_junk($product['name']); ?>">
+                  <input type="text" class="form-control" id="sug_input" name="title" data-toggle="tooltip" data-placement="bottom" readonly title="Product name" value="<?php echo remove_junk($product['name']); ?>">
                   <div id="result" class="list-group"></div>
                 </td>
                 <td id="s_qty">
-                  <input type="text" class="form-control" name="quantity" value="<?php echo (int)$sale['qty']; ?>">
+                  <input type="text" class="form-control" name="quantity" data-toggle="tooltip" data-placement="bottom" title="Edit sold product quantity" value="<?php echo (int)$sale['qty']; ?>">
                 </td>
                 <td id="s_price">
-                  <input type="text" class="form-control" name="price" value="<?php echo remove_junk($product['sale_price']); ?>">
+                  <input type="text" class="form-control" name="price" data-toggle="tooltip" data-placement="bottom" readonly title="Product selling price" value="<?php echo remove_junk($product['sale_price']); ?>">
                 </td>
                 <td>
-                  <input type="text" class="form-control" name="total" value="<?php echo remove_junk($sale['price']); ?>">
+                  <input type="text" class="form-control" name="total" data-toggle="tooltip" data-placement="bottom" readonly title="Product total price amount" value="<?php echo remove_junk($sale['price']); ?>">
                 </td>
                 <td id="s_date">
-                  <input type="date" class="form-control datepicker" name="date" data-date-format="" value="<?php echo remove_junk($sale['date']); ?>">
+                  <input type="date" class="form-control datepicker" name="date" data-date-format="" data-toggle="tooltip" data-placement="bottom" readonly title="Product sold date" value="<?php echo remove_junk($sale['date']); ?>">
                 </td>
                 <td>
-                  <button type="submit" name="update_sale" class="btn btn-primary btn-sm"><span class="fa fa-check"></span> Save Changes</button>
+                  <button type="submit" name="update_sale" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Save changes">Save Changes</button>
                 </td>
               </tr>
             </tbody>

@@ -6,10 +6,10 @@
 <?php
   $delete_id = delete_by_id('suppliers',(int)$_GET['id']);
   if($delete_id){
-      $session->msg("s","Supplier successfully removed.");
+      $session->msg("s","Supplier removed successfully.");
       redirect('supplier.php');
   } else {
-      $session->msg("d","Supplier failed to remove.");
+      $session->msg("d","Failed to remove supplier.");
       redirect('supplier.php');
   }
 ?>

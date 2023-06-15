@@ -10,7 +10,7 @@
       $session->msg("s","Photo removed successfully.");
       redirect('media.php');
   } else {
-      $session->msg("d","Photo failed to remove.");
+      $session->msg("d","Failed to remove photo.");
       redirect('media.php');
   }
 ?>

@@ -28,10 +28,10 @@
             $sql = "UPDATE users SET name ='{$name}', username ='{$username}',user_level='{$level}',status='{$status}' WHERE id='{$db->escape($id)}'";
          $result = $db->query($sql);
           if($result && $db->affected_rows() === 1){
-            $session->msg('s',"Acount Updated ");
-            redirect('edit_user.php?id='.(int)$e_user['id'], false);
+            $session->msg('s',"User account successfully updated.");
+            redirect('users.php?id='.(int)$e_user['id'], false);
           } else {
-            $session->msg('d',' Sorry failed to updated!');
+            $session->msg('d',' Failed to update user account.');
             redirect('edit_user.php?id='.(int)$e_user['id'], false);
           }
     } else {
@@ -52,10 +52,10 @@ if(isset($_POST['update-pass'])) {
           $sql = "UPDATE users SET password='{$h_pass}' WHERE id='{$db->escape($id)}'";
        $result = $db->query($sql);
         if($result && $db->affected_rows() === 1){
-          $session->msg('s',"User password has been updated ");
+          $session->msg('s',"Password updated successfully.");
           redirect('edit_user.php?id='.(int)$e_user['id'], false);
         } else {
-          $session->msg('d',' Sorry failed to updated user password!');
+          $session->msg('d', 'Failed to update user password.');
           redirect('edit_user.php?id='.(int)$e_user['id'], false);
         }
   } else {
@@ -69,67 +69,75 @@ if(isset($_POST['update-pass'])) {
  <div class="row">
    <div class="col-md-12"> <?php echo display_msg($msg); ?> </div>
   <div class="col-md-6">
-     <div class="panel panel-default">
-       <div class="panel-heading">
-        <strong>
+     <div class="panel panel-info">
+       <div class="panel-heading clearfix">
+        <strong >
           
-          Edit Account
+          Edit User Account
         </strong>
-       </div>
+        <div class="pull-right">
+          <a href="users.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Back"><span class="fas fa-arrow-left"></span></a>
+        </div>
+      </div>
        <div class="panel-body">
           <form method="post" action="edit_user.php?id=<?php echo (int)$e_user['id'];?>" class="clearfix">
+          <div class="form-group">
+  <label style="color: #7f7f7f;" for="name" class="control-label">Name</label>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fas fa-pencil-alt" style="color: #666666;"></i>
+    </span>
+    <input type="name" class="form-control" name="name" data-toggle="tooltip" data-placement="bottom" title="Edit user's full name" value="<?php echo remove_junk(ucwords($e_user['name'])); ?>">
+  </div>
+</div>
+<div class="form-group">
+  <label style="color: #7f7f7f;" for="username" class="control-label">Username</label>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fas fa-user" style="color: #666666;"></i>
+    </span>
+    <input type="text" class="form-control" name="username" data-toggle="tooltip" data-placement="bottom" title="Edit user's username" value="<?php echo remove_junk(ucwords($e_user['username'])); ?>">
+  </div>
+</div>
+<div class="form-group">
+  <label style="color: #7f7f7f;" for="level">User Role</label>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fas fa-user-check" style="color: #666666;"></i>
+    </span>
+    <select class="form-control" data-toggle="tooltip" data-placement="bottom" title="Edit user's access level" name="level">
+      <?php foreach ($groups as $group ):?>
+        <option <?php if($group['group_level'] === $e_user['user_level']) echo 'selected="selected"';?> value="<?php echo $group['group_level'];?>"><?php echo ucwords($group['group_name']);?></option>
+      <?php endforeach;?>
+    </select>
+  </div>
+</div>
+<div class="form-group">
+  <label style="color: #7f7f7f;" for="status">Status</label>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fas fa-toggle-on" style="color: #666666;"></i>
+    </span>
+    <select class="form-control" data-toggle="tooltip" data-placement="bottom" title="Activate/Deactivate user" name="status">
+      <option <?php if($e_user['status'] === '1') echo 'selected="selected"';?>value="1">Active</option>
+      <option <?php if($e_user['status'] === '0') echo 'selected="selected"';?> value="0">Inactive</option>
+    </select>
+  </div>
+</div>
+
             <div class="form-group">
-                  <label for="name" class="control-label">Name</label>
-                  <input type="name" class="form-control" name="name" value="<?php echo remove_junk(ucwords($e_user['name'])); ?>">
-            </div>
-            <div class="form-group">
-                  <label for="username" class="control-label">Username</label>
-                  <input type="text" class="form-control" name="username" value="<?php echo remove_junk(ucwords($e_user['username'])); ?>">
-            </div>
-            <div class="form-group">
-              <label for="level">User Role</label>
-                <select class="form-control" name="level">
-                  <?php foreach ($groups as $group ):?>
-                   <option <?php if($group['group_level'] === $e_user['user_level']) echo 'selected="selected"';?> value="<?php echo $group['group_level'];?>"><?php echo ucwords($group['group_name']);?></option>
-                <?php endforeach;?>
-                </select>
-            </div>
-            <div class="form-group">
-              <label for="status">Status</label>
-                <select class="form-control" name="status">
-                  <option <?php if($e_user['status'] === '1') echo 'selected="selected"';?>value="1">Active</option>
-                  <option <?php if($e_user['status'] === '0') echo 'selected="selected"';?> value="0">Inactive</option>
-                </select>
-            </div>
-            <div class="form-group clearfix">
-                    <button type="submit" name="update" class="btn btn-primary pull-right btn-sm"><span class="fa fa-check"></span> Save Changes</button>
+                    <button type="submit" name="update" class="btn custom-primary-btn pull-right btn-sm" data-toggle="tooltip" data-placement="bottom" title="Save changes"><span class="fas fa-check"></span> Save Changes</button>
             </div>
         </form>
        </div>
      </div>
   </div>
-  <!-- Change password form -->
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <strong>
-          
-          Change Password
-        </strong>
-      </div>
-      <div class="panel-body">
-        <form action="edit_user.php?id=<?php echo (int)$e_user['id'];?>" method="post" class="clearfix">
-          <div class="form-group">
-                <label for="password" class="control-label">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Type user new password">
-          </div>
-          <div class="form-group clearfix">
-                  <button type="submit" name="update-pass" class="btn btn-primary pull-right btn-sm"><span class="fa fa-check"></span> Save Changes</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+  
+  
+      
+    
 
- </div>
+      
+
+
 <?php include_once('layouts/footer.php'); ?>

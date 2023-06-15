@@ -13,10 +13,10 @@
 <?php
   $delete_id = delete_by_id('sales',(int)$d_sale['id']);
   if($delete_id){
-      $session->msg("s","Sale removed successfully.");
+      $session->msg("s","Sale record removed successfully.");
       redirect('sales.php');
   } else {
-      $session->msg("d","Sale failed to remove.");
+      $session->msg("d","Failed to remove sale record.");
       redirect('sales.php');
   }
 ?>

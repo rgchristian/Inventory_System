@@ -19,10 +19,12 @@
   </div>
  <div class="col-md-12">
     <div class="panel">
+      <strong>
       <div class="jumbotron text-center">
-         <h1>Welcome, User.</h1> 
-         <h1><span class="fa fa-cubes"></span> Tile Inventory Management System</h1>
-         <hr><p>Browse around to find out the pages that you can access.</p>
+         
+         <h1 style="color: #666666;">Tile Inventory Management System</h1>
+         <!-- <p style="color: #666666;">Browse around to find out the pages that you can access.</p> -->
+         </strong>
       </div>
     </div>
  </div>

@@ -16,7 +16,7 @@
       $session->msg("s","Product removed successfully.");
       redirect('product.php');
   } else {
-      $session->msg("d","Product failed to remove.");
+      $session->msg("d","Failed to remove product.");
       redirect('product.php');
   }
 ?>

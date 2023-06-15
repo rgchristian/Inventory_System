@@ -11,6 +11,16 @@
   body {
     background-color: #DDDDDD;
     }
+
+  .custom-primary-btn {
+    background-color: #567189;
+    color: white;
+    
+  }
+  .custom-primary-btn:hover {
+    background-color: white;
+    border-color: black;
+  }
 </style>
 
 
@@ -22,21 +32,20 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <div class="panel panel-default">
+    <div class="panel panel-info">
     <div class="panel-heading clearfix">
       <strong>
-        
-        <span>Manage Roles</span>
+        <span >Roles</span>
      </strong>
-       <a href="add_group.php" class="btn btn-primary pull-right btn-sm"><span class="fa fa-plus"></span> Add New Role</a>
+     <a href="add_group.php" class="btn custom-primary-btn pull-right btn-sm" data-toggle="tooltip" data-placement="bottom" title="Add new access role"><span class="fa fa-plus"></span> Add New Role</a>
     </div>
      <div class="panel-body">
-      <table class="table table-bordered">
+      <table class="table table-bordered" style="color: #567189;">
         <thead>
           <tr>
             <th class="text-center" style="width: 50px;">#</th>
             <th >Role Name</th>
-            <th class="text-center" style="width: 20%;">Role Level</th>
+            <th class="text-center" style="width: 20%;">Access Level</th>
             <th class="text-center" style="width: 15%;">Status</th>
             <th class="text-center" style="width: 100px;">Actions</th>
           </tr>
@@ -58,11 +67,11 @@
            </td>
            <td class="text-center">
              <div class="btn-group">
-                <a href="edit_group.php?id=<?php echo (int)$a_group['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
-                  <i class="fa fa-pencil-square-o"></i>
+                <a class="text-center" href="edit_group.php?id=<?php echo (int)$a_group['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit access role">
+                  <i class="fas fa-pencil-square-o" style="color: #567189;"></i>
                </a>
-                <a href="delete_group.php?id=<?php echo (int)$a_group['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
-                  <i class="fa fa-trash-o"></i>
+                <a class="text-center" href="delete_group.php?id=<?php echo (int)$a_group['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove role">
+                  <i class="fas fa-trash" style="color: #567189;"></i>
                 </a>
                 </div>
            </td>

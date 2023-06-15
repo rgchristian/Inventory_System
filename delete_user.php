@@ -6,10 +6,10 @@
 <?php
   $delete_id = delete_by_id('users',(int)$_GET['id']);
   if($delete_id){
-      $session->msg("s","User successfully removed.");
+      $session->msg("s","User removed successfully.");
       redirect('users.php');
   } else {
-      $session->msg("d","User failed to remove.");
+      $session->msg("d","Failed to remove user.");
       redirect('users.php');
   }
 ?>

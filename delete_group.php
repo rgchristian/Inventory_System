@@ -9,7 +9,7 @@
       $session->msg("s","Group removed successfully.");
       redirect('group.php');
   } else {
-      $session->msg("d","Group failed to remove.");
+      $session->msg("d","Failed to remove group.");
       redirect('group.php');
   }
 ?>
