@@ -200,7 +200,7 @@ function tableExists($table){
      elseif($current_user['user_level'] <= (int)$require_level):
               return true;
       else:
-            $session->msg("d", "Only user admin have the access to this page.");
+            $session->msg("d", "Only admins have access to this page.");
             redirect('home.php', false);
         endif;
 
@@ -220,6 +220,8 @@ function tableExists($table){
     $sql .= " ORDER BY p.id ASC";
     return find_by_sql($sql);
     }
+
+    
   /*--------------------------------------------------------------*/
   /* Function for Finding all product name
   /* Request coming from ajax.php for auto suggest
@@ -260,15 +262,30 @@ function tableExists($table){
   /*--------------------------------------------------------------*/
   /* Function for Update product quantity stock
   /*--------------------------------------------------------------*/
-  function update_product_qty_stock($qty,$p_id){
+  function update_product_qty_stock($qty,$product_id){
     global $db;
     $qty = (int) $qty;
-    $id  = (int)$p_id;
-    $sql = "UPDATE products SET quantity = quantity + '{$qty}' WHERE id = '{$id}'";
+    $id  = (int)$$product_id;
+    $sql = "UPDATE products SET quantity = quantity + $qty, added_stock = added_stock + $qty WHERE id = $product_id";
     $result = $db->query($sql);
     return($db->affected_rows() === 1 ? true : false);
-
+  
   }
+  // function update_product_qty_stock($qty,$p_id){
+  //   global $db;
+  //   $qty = (int) $qty;
+  //   $id  = (int)$p_id;
+  //   $sql = "UPDATE products SET quantity = quantity + '{$qty}' WHERE id = '{$id}'";
+  //   $result = $db->query($sql);
+  //   return($db->affected_rows() === 1 ? true : false);
+
+  // }
+
+  
+
+ 
+
+
   /*--------------------------------------------------------------*/
   /* Function for Display Recent product Added
   /*--------------------------------------------------------------*/
@@ -318,22 +335,44 @@ function find_recent_sale_added($limit){
 /*--------------------------------------------------------------*/
 /* Function for Generate sales report by two dates
 /*--------------------------------------------------------------*/
-function find_sale_by_dates($start_date,$end_date){
+function find_sale_by_dates($start_date, $end_date)
+{
   global $db;
-  $start_date  = date("Y-m-d", strtotime($start_date));
-  $end_date    = date("Y-m-d", strtotime($end_date));
-  $sql  = "SELECT s.date, p.name,p.sale_price,p.buy_price,";
-  $sql .= "COUNT(s.product_id) AS total_records,";
-  $sql .= "SUM(s.qty) AS total_sales,";
-  $sql .= "SUM(p.sale_price * s.qty) AS total_saleing_price,";
-  $sql .= "SUM(p.buy_price * s.qty) AS total_buying_price ";
-  $sql .= "FROM sales s ";
-  $sql .= "LEFT JOIN products p ON s.product_id = p.id";
+  $start_date = date("Y-m-d", strtotime($start_date));
+  $end_date = date("Y-m-d", strtotime($end_date));
+  $sql = "SELECT s.date, p.name, p.sale_price, p.buy_price, sup.supp_name AS supplier,";
+  $sql .= " COUNT(s.product_id) AS total_records,";
+  $sql .= " SUM(s.qty) AS total_sales,";
+  $sql .= " SUM(p.sale_price * s.qty) AS total_saleing_price,";
+  $sql .= " SUM(p.buy_price * s.qty) AS total_buying_price,";
+  $sql .= " p.quantity AS quantity,";
+  $sql .= " p.added_stock AS added_stock,";
+  $sql .= " (SELECT SUM(quantity) FROM products) AS total_in_stock ";
+  $sql .= " FROM sales s";
+  $sql .= " LEFT JOIN products p ON s.product_id = p.id";
+  $sql .= " LEFT JOIN suppliers sup ON p.supplier = sup.id"; // Joining the suppliers table
   $sql .= " WHERE s.date BETWEEN '{$start_date}' AND '{$end_date}'";
-  $sql .= " GROUP BY DATE(s.date),p.name";
+  $sql .= " GROUP BY DATE(s.date), p.name";
   $sql .= " ORDER BY DATE(s.date) DESC";
   return $db->query($sql);
 }
+
+// function find_sale_by_dates($start_date,$end_date){
+//   global $db;
+//   $start_date  = date("Y-m-d", strtotime($start_date));
+//   $end_date    = date("Y-m-d", strtotime($end_date));
+//   $sql  = "SELECT s.date, p.name,p.sale_price,p.buy_price,";
+//   $sql .= "COUNT(s.product_id) AS total_records,";
+//   $sql .= "SUM(s.qty) AS total_sales,";
+//   $sql .= "SUM(p.sale_price * s.qty) AS total_saleing_price,";
+//   $sql .= "SUM(p.buy_price * s.qty) AS total_buying_price ";
+//   $sql .= "FROM sales s ";
+//   $sql .= "LEFT JOIN products p ON s.product_id = p.id";
+//   $sql .= " WHERE s.date BETWEEN '{$start_date}' AND '{$end_date}'";
+//   $sql .= " GROUP BY DATE(s.date),p.name";
+//   $sql .= " ORDER BY DATE(s.date) DESC";
+//   return $db->query($sql);
+// }
 /*--------------------------------------------------------------*/
 /* Function for Generate Daily sales report
 /*--------------------------------------------------------------*/
@@ -363,7 +402,9 @@ function  monthlySales($year){
   $sql .= " ORDER BY date_format(s.date, '%c' ) ASC";
   return find_by_sql($sql);
 }
-
+/*--------------------------------------------------------------*/
+/* Function for find supplier
+/*--------------------------------------------------------------*/
 function find_suppliers(){
   global $db;
   $results = array();
@@ -372,6 +413,59 @@ function find_suppliers(){
   $result = find_by_sql($sql);
   return $result;
 }
+/*--------------------------------------------------------------*/
+/* Function for count total stock
+/*--------------------------------------------------------------*/
+function count_total_in_stock() {
+  global $db;
+
+  $query = "SELECT SUM(quantity) AS total_in_stock FROM products";
+  $result = $db->query($query);
+  $row = $result->fetch_assoc();
+
+  return $row['total_in_stock'];
+}
+/*--------------------------------------------------------------*/
+/* Function for fetching a product from 'products' table and storing it in 'sell_product' table
+/*--------------------------------------------------------------*/
+function fetch_product_to_sell($product_id) {
+  global $db;
+  
+  // Fetch the product from 'products' table
+  $product = find_by_id('products', $product_id);
+  
+  // If the product is found, insert it into 'sell_product' table
+  if ($product) {
+     $name = $db->escape($product['name']);
+     $price = (float)$product['sale_price'];
+     $date = date('Y-m-d');
+     
+     $sql = "INSERT INTO sell_product (item, price, date) VALUES ('$name', $price, '$date')";
+     $result = $db->query($sql);
+     
+     if ($result && $db->affected_rows() === 1) {
+        // Product inserted successfully into 'sell_product' table
+        return true;
+     } else {
+        // Failed to insert the product into 'sell_product' table
+        return false;
+     }
+  } else {
+     // Product not found in 'products' table
+     return false;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 ?>

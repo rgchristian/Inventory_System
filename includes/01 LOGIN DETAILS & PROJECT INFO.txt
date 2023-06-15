@@ -9,6 +9,6 @@ Password: admin
 
 **Employee Login Details**
 
-Username: special
-Password: special
+Username: employee
+Password: employee
 

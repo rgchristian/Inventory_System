@@ -17,28 +17,62 @@
     .login-page {
         width: 490px;
         margin: 1 auto;
+        border: 1px solid;
+        border-radius: 5px;
+        border-color: #567189;
     }
 </style>
 
+
 <div class="login-page">
     <div class="text-center">
+        <h3 style="color: #666666;"> Login</h3>
         
-        <h3><span class="fa fa-cubes"></span> Tile Inventory Management System</h3>
-    <hr></div>
+    </div>
     <?php echo display_msg($msg); ?>
     <form method="post" action="auth.php" class="clearfix">
         <div class="form-group">
-            <label for="username" class="control-label">Username</label>
-            <input type="name" class="form-control" name="username" placeholder="Username">
+            <label style="color: #7f7f7f;" for="name">Username</label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-user" style="color: #666666;"></i></span>
+                <input type="text" class="form-control" name="username" placeholder="Username">
+            </div>
         </div>
+
         <div class="form-group">
-            <label for="Password" class="control-label">Password</label>
-            <input type="password" name="password" class="form-control" placeholder="Password">
+            <label style="color: #7f7f7f;" for="name">Password</label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fas fa-lock" style="color: #666666;"></i></span>
+                <input type="password" name="password" class="form-control" placeholder="Password">
+            </div>
         </div>
+
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block" style="border-radius:0%"><span class="fa fa-sign-in"></span> Login</button>
+            <div class="checkbox">
+                <label style="color: #666666;">
+                    <input type="checkbox" name="remember"> Remember Me
+                </label>
+            </div>
         </div>
+        
+        <div class="form-group">
+            <button type="submit" class="btn custom-primary-btn btn-block" style="border-radius: 5px%;">Login</button>
         </div>
     </form>
 </div>
 
+<?php
+if (isset($_POST['remember'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Check if the provided username and password are valid
+    if (valid_username_password($username, $password)) {
+        // Set a cookie to remember the user
+        $cookie_name = "remember";
+        $cookie_value = "true";
+        $cookie_expiration = time() + (2 * 24 * 60 * 60); // Cookie valid for 2 days
+        setcookie($cookie_name, $cookie_value, $cookie_expiration, '/');
+    }
+}
+?>

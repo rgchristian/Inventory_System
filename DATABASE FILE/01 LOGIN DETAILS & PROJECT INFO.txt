@@ -19,3 +19,92 @@ Password: special
 
 Username: user
 Password: user 
+
+<label style="color: #567189;">Role Name</label>
+
+style="color: #567189;"
+
+class="table table-bordered" style="color: #567189;"
+
+class="text-center"
+
+table-striped 
+table-hover 
+table-condensed
+
+
+<label style="color: #567189;">Role Name</label>
+
+style="color: #567189;"
+
+class="table table-bordered" style="color: #567189;"
+
+class="text-center"
+
+table-striped 
+table-hover 
+table-condensed
+
+
+<a href="add_group.php" class="btn custom-primary-btn pull-right btn-sm"><span class="fa fa-plus"></span> Add New Role</a>
+
+<button type="submit" name="update" class="btn custom-primary-btn pull-right btn-sm"><span class="fas fa-check"></span> Save Changes</button>
+
+<style>
+.custom-primary-btn {
+    background-color: #567189;
+    color: white;
+    
+  }
+  .custom-primary-btn:hover {
+    background-color: white;
+    border-color: black;
+  }
+</style>
+
+<div class="pull-right">
+          <a href="product.php" class="btn custom-primary-btn btn-sm"><span class="fas fa-cube"></span></a>
+        </div>
+      </div>
+
+<a class="text-center" href="delete_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
+                  <i class="fas fa-trash" style="color: #567189;"></i>
+                </a>
+                </div>
+
+                data-toggle="tooltip" data-placement="bottom" title="Input product name"
+
+routing of back button in sold product->sell product->back->sold product (not product) - done
+
+stock card
+
+Add product modal, edit product modal and sell product modal
+
+edit tooltip
+
+index.php - remember me() and 
+
+#999999
+#7f7f7f - label
+#666666 - stock report/card, icon
+
+fas fa-warehouse - TIMS Logo
+fas fa-tachometer-alt - employee
+
+
+sales tooltip
+product name remembered when selling product (product->sell product)
+stock card
+
+Throw error in adding stock (add_stock.php)
+function update_product_qty_stock($qty, $product_id) {
+  global $db;
+  $qty = (int) $qty;
+  $id  = (int)$p_id;
+
+  $sql = "UPDATE products SET quantity = quantity + $qty, added_stock = added_stock + $qty WHERE id = $product_id";
+  $result = $db->query($sql);
+
+  return $result && $db->affected_rows === 1;
+  
+}

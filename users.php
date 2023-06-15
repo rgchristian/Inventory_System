@@ -25,16 +25,16 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <div class="panel panel-default">
+    <div class="panel panel-info">
       <div class="panel-heading clearfix">
         <strong>
           
-          <span>Manage Users</span>
+          <span >Users</span>
        </strong>
-         <a href="add_user.php" class="btn btn-primary pull-right btn-sm"><i class="fa fa-plus">&nbsp;</i> Add New User</a>
+         <a href="add_user.php" class="btn custom-primary-btn pull-right btn-sm" data-toggle="tooltip" data-placement="bottom" title="Add new user to the system"><i class="fas fa-plus">&nbsp;</i> Add New User</a>
       </div>
      <div class="panel-body">
-      <table class="table table-bordered table-striped">
+      <table class="table table-bordered" style="color: #567189;">
         <thead>
           <tr>
             <th class="text-center" style="width: 50px;">#</th>
@@ -58,17 +58,17 @@
            <?php if($a_user['status'] === '1'): ?>
             <span class="label label-success"><?php echo "Active"; ?></span>
           <?php else: ?>
-            <span class="label label-danger"><?php echo "Deactive"; ?></span>
+            <span class="label label-danger"><?php echo "Inactive"; ?></span>
           <?php endif;?>
            </td>
            <td class="text-center"><?php echo read_date($a_user['last_login'])?></td>
            <td class="text-center">
              <div class="btn-group">
-                <a href="edit_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit">
-                  <i class="fa fa-pencil-square-o"></i>
+                <a class="text-center" href="edit_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-warning" data-toggle="tooltip" title="Edit user account">
+                  <i class="fas fa-pencil-square-o" style="color: #567189;"></i>
                </a>
-                <a href="delete_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove">
-                  <i class="fa fa-trash-o"></i>
+                <a class="text-center" href="delete_user.php?id=<?php echo (int)$a_user['id'];?>" class="btn btn-xs btn-danger" data-toggle="tooltip" title="Remove user account">
+                  <i class="fas fa-trash" style="color: #567189;"></i>
                 </a>
                 </div>
            </td>

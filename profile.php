@@ -22,14 +22,14 @@
 
 <div class="row">
    <div class="col-md-4">
-       <div class="panel profile">
-         <div class="jumbotron text-center bg-red">
+       <div class="panel profile panel-info">
+       <div class="jumbotron text-center" style="background-color: #567189;">
             <img class="img-circle img-size-2" src="uploads/users/<?php echo $user_p['image'];?>" alt="">
            <h3><?php echo first_character($user_p['name']); ?></h3>
          </div>
         <?php if( $user_p['id'] === $user['id']):?>
          <ul class="nav nav-pills nav-stacked">
-          <li><a href="edit_account.php"> <i class="glyphicon glyphicon-edit"></i> <strong>Edit Account</a></li></strong>
+          <li><a href="edit_account.php" data-toggle="tooltip" data-placement="bottom" title="Edit account"> <i class="fas fa-edit" style="color: #567189;"></i> <strong style="color: #567189;">Edit Account</a></li></strong>
          </ul>
        <?php endif;?>
        </div>
