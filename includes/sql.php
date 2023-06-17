@@ -455,6 +455,16 @@ function fetch_product_to_sell($product_id) {
      return false;
   }
 }
+/*--------------------------------------------------------------*/
+/* Function to restrict selling product stock that exceeds the product's available stock
+/*--------------------------------------------------------------*/
+function find_product_by_id($product_id) {
+  global $db;
+  $product_id = $db->escape((int)$product_id);
+  $sql = "SELECT * FROM products WHERE id = '{$product_id}' LIMIT 1";
+  $result = $db->query($sql);
+  return $db->fetch_assoc($result);
+}
 
 
 

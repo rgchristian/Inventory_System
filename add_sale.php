@@ -6,35 +6,39 @@
 ?>
 <?php
 
-  if(isset($_POST['add_sale'])){
-    $req_fields = array('s_id','quantity','price','total', 'date' );
-    validate_fields($req_fields);
-        if(empty($errors)){
-          $p_id      = $db->escape((int)$_POST['s_id']);
-          $s_qty     = $db->escape((int)$_POST['quantity']);
-          $s_total   = $db->escape($_POST['total']);
-          $date      = $db->escape($_POST['date']);
-          $s_date    = make_date();
+  if (isset($_POST['add_sale'])) {
+  $req_fields = array('s_id', 'quantity', 'price', 'total', 'date');
+  validate_fields($req_fields);
 
-          $sql  = "INSERT INTO sales (";
-          $sql .= " product_id,qty,price,date";
-          $sql .= ") VALUES (";
-          $sql .= "'{$p_id}','{$s_qty}','{$s_total}','{$s_date}'";
-          $sql .= ")";
+  if (empty($errors)) {
+    $p_id    = $db->escape((int)$_POST['s_id']);
+    $s_qty   = $db->escape((int)$_POST['quantity']);
+    $s_total = $db->escape($_POST['total']);
+    $date    = $db->escape($_POST['date']);
+    $s_date  = make_date();
 
-                if($db->query($sql)){
-                  update_product_qty($s_qty,$p_id);
-                  $session->msg('s', "Product sold successfully.");
-                  redirect('product.php', false);
-                } else {
-                  $session->msg('d', 'Failed to sale product.');
-                  redirect('add_sale.php', false);
-                }
-        } else {
-           $session->msg("d", $errors);
-           redirect('add_sale.php',false);
-        }
+    // Check if the selling quantity exceeds the available quantity
+    $product = find_product_by_id($p_id);
+    if ($product['quantity'] >= $s_qty) {
+      $sql = "INSERT INTO sales (product_id, qty, price, date) VALUES ('{$p_id}', '{$s_qty}', '{$s_total}', '{$s_date}')";
+
+      if ($db->query($sql)) {
+        update_product_qty($s_qty, $p_id);
+        $session->msg('s', "Product sold successfully.");
+        redirect('product.php', false);
+      } else {
+        $session->msg('d', 'Failed to sell product.');
+        redirect('add_sale.php', false);
+      }
+    } else {
+      $session->msg('d', "Selling quantity exceeds the available quantity for the product: {$product['name']}");
+      redirect('add_sale.php', false);
+    }
+  } else {
+    $session->msg("d", $errors);
+    redirect('add_sale.php', false);
   }
+}
 
 ?>
 <?php include_once('layouts/header.php'); ?>

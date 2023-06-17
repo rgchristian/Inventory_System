@@ -124,7 +124,7 @@ if (isset($_POST['search'])) {
   </div>
   
   <div class="col-md-12">
-    <div class="panel panel-info">
+    <div class="panel panel-info" >
         <div class="panel-heading clearfix">
             <strong>
                 <span >Tile Products</span>

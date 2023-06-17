@@ -33,7 +33,7 @@ $sales = find_all_sale();
         <div class="panel-heading clearfix">
         
           <strong>
-            <span >Sold Products History</span>
+            <span >Sold Products</span>
           </strong>
 
           <div class="pull-right button-container">

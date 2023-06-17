@@ -105,7 +105,7 @@
     <span class="input-group-addon">
       <i class="fas fa-pencil-alt" style="color: #666666;"></i>
     </span>
-    <input type="name" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Edit your full name"  name="name" value="<?php echo remove_junk(ucwords($user['name'])); ?>">
+    <input type="name" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Edit your full name" name="name" value="<?php echo remove_junk(ucwords($user['name'])); ?>">
   </div>
 </div>
 <div class="form-group">

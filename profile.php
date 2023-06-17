@@ -29,7 +29,7 @@
          </div>
         <?php if( $user_p['id'] === $user['id']):?>
          <ul class="nav nav-pills nav-stacked">
-          <li><a href="edit_account.php" data-toggle="tooltip" data-placement="bottom" title="Edit account"> <i class="fas fa-edit" style="color: #567189;"></i> <strong style="color: #567189;">Edit Account</a></li></strong>
+          <li><a href="edit_account.php" data-toggle="tooltip" data-placement="bottom" title="Edit account"> <i class="fas fa-arrow-right pull-right" style="color: #567189;"></i> <strong style="color: #567189;">Edit Account</a></li></strong>
          </ul>
        <?php endif;?>
        </div>

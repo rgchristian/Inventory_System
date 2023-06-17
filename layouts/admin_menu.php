@@ -1,3 +1,14 @@
+<style>
+  .menu-list li a:hover,
+  .menu-list li a.active 
+  .menu-list li a.clicked {
+    border: 2px solid #567189;
+    border-radius: 3px;
+  }
+</style>
+
+
+
 <ul class="menu-list">
   <li>
     <a href="admin.php"> 
@@ -12,7 +23,6 @@
       <span class="menu-title">Tile Products</span>
     </a>
     <ul>
-      
       <!-- <li><a href="add_product.php"><i class="fa fa-cart-arrow-down"></i>Add Product</a></li> -->
       <!-- <li><a href="sales.php"><i class="fa fa-history"></i>Sales History</a></li> -->
     </ul>
@@ -45,27 +55,4 @@
       <span class="menu-title">Stock Card</span>
     </a>
   </li>
-
-  <!-- <li>
-    <a href="supplier.php" class="submenu-toggle">
-      <i class="fa fa-truck"></i>
-      <span class="menu-title">Suppliers</span>
-    </a> -->
-    <!-- <ul class="nav submenu">
-      <li><a href="supplier.php"><i class="fa fa-address-card-o"></i>Manage Suppliers</a></li>
-      <li><a href="add_supplier.php"><i class="fa fa-handshake-o"></i> Add Supplier</a></li>
-    </ul>
-  </li> -->
-
-  <!-- <li>
-    <a href="#" class="submenu-toggle">
-      <i class="glyphicon glyphicon-user"></i>
-      <span class="menu-title">User Management<i class="fa fa-caret-down"></i></span>
-    </a>
-    <ul class="nav submenu">
-      <li><a href="group.php"><i class="fa fa-user"></i> Manage Roles</a></li>
-      <li><a href="users.php"><i class="fa fa-users"></i>Manage Users</a></li>
-    </ul> -->
-  </li>
-
-  
+</ul>

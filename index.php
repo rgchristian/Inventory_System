@@ -35,7 +35,7 @@
             <label style="color: #7f7f7f;" for="name">Username</label>
             <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-user" style="color: #666666;"></i></span>
-                <input type="text" class="form-control" name="username" placeholder="Username">
+                <input type="text" class="form-control" name="username" placeholder="Username" data-toggle="tooltip" data-placement="bottom" title="Input username">
             </div>
         </div>
 
@@ -43,7 +43,7 @@
             <label style="color: #7f7f7f;" for="name">Password</label>
             <div class="input-group">
                 <span class="input-group-addon"><i class="fas fa-lock" style="color: #666666;"></i></span>
-                <input type="password" name="password" class="form-control" placeholder="Password">
+                <input type="password" name="password" class="form-control" placeholder="Password" data-toggle="tooltip" data-placement="bottom" title="Input password">
             </div>
         </div>
 
@@ -56,7 +56,7 @@
         </div>
         
         <div class="form-group">
-            <button type="submit" class="btn custom-primary-btn btn-block" style="border-radius: 5px%;">Login</button>
+            <button type="submit" class="btn custom-primary-btn btn-block" style="border-radius: 5px%;" data-toggle="tooltip" data-placement="bottom" title="Login">Login</button>
         </div>
     </form>
 </div>
