@@ -23,6 +23,7 @@ $results = '';
     $session->msg("d", "Select dates");
     redirect('stock_card.php', false);
   }
+  
 ?>
 <!doctype html>
 <html lang="en-US">

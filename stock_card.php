@@ -24,7 +24,7 @@ $page_title = 'Stock Card Report';
       <div class="panel-heading">
         <strong>
           
-          <span >Stock Card</span>
+          <span >Stock Report</span>
         </strong>
       </div>
       <div class="panel-body">

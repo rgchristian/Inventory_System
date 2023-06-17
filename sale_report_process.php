@@ -104,7 +104,7 @@ $results = '';
         <thead>
           <tr>
               <th>Date</th>
-              <th>Product Title</th>
+              <th>Product Name</th>
               <th>Buying Price</th>
               <th>Selling Price</th>
               <th>Total Quantity</th>

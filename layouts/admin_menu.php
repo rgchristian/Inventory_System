@@ -51,8 +51,8 @@
 
   <li>
     <a href="stock_card.php"> 
-      <i class="fa fa-file-text-o"></i>
-      <span class="menu-title">Stock Card</span>
+      <i class="fa fa-cube"></i>
+      <span class="menu-title">Stock Report</span>
     </a>
   </li>
 </ul>

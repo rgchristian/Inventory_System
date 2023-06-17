@@ -78,7 +78,9 @@ if (isset($_POST['search'])) {
     color: #999;
     cursor: not-allowed;
   }
-
+  .custom-primary-btn {
+  margin-right: 10px;
+}
 
 </style>
 
@@ -136,14 +138,15 @@ if (isset($_POST['search'])) {
                             <div class="input-group pull-right">
                                 <input type="text" class="form-control" name="search" placeholder="Search for tile" data-toggle="tooltip" data-placement="bottom" title="Input product name" style="font-size: 13px;" value="<?php echo isset($search_term) ? $search_term : ''; ?>">
                                 <span class="input-group-btn">
-                                    <button class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Search product" type="submit" style="font-size: 13px;"><i class="fa fa-search" style="font-size: 13px;"></i></button>
+                                    <button class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Search product" type="submit" style="font-size: 13px;"><i class="fa fa-search" style="font-size: 13px;"></i></button>&nbsp;
                                 </span>
                             </div>
                         </form>
                     </div>
                     <div class="col-md-6">
                         <div class="button-group">
-                            <a href="add_product.php" class="btn custom-primary-btn btn-sm pull-right" data-toggle="tooltip" data-placement="bottom" title="Add new tile product"><i class="fas fa-plus">&nbsp;</i> Add New Tile Product</a>
+                            <a href="add_product.php" class="btn custom-primary-btn btn-sm pull-right" data-toggle="tooltip" data-placement="bottom" title="Add new tile product"><i class="fas fa-plus"></i> Add New Tile Product</a>
+                            <a href="product.php" class="btn custom-primary-btn btn-sm pull-right" data-toggle="tooltip" data-placement="bottom" title="Inventory"><span class="fab fa-delicious"></span></a>
                         </div>
                     </div>
                 </div>
