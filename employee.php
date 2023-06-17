@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Home';
+  $page_title = 'Dashboard';
   require_once('includes/load.php');
   // Checking what level user has permission to view this page
   page_require_level(2);

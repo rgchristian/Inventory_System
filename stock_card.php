@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Stock Card Report';
+$page_title = 'Stock Report';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(3);
