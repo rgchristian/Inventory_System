@@ -25,7 +25,7 @@
          <h1 style="color: #666666;">Tile Inventory Management System</h1>
          <p style="color: #666666;">Project Name: Tile Inventory Management System (TIMS)</p>
          <p style="color: #666666;">Language/s Used: PHP</p>
-         <p style="color: #666666;">PHP version (Recommended): 5.6.3</p>
+         <p style="color: #666666;">PHP Version: 5.6.3</p>
          <p style="color: #666666;">Database: MySQL</p>
          </strong>
       </div>

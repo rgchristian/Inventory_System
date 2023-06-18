@@ -25,14 +25,14 @@
                 if($db->query($sql)){
                   update_product_qty($s_qty,$p_id);
                   $session->msg('s', "Product sold successfully.");
-                  redirect('product.php', false);
+                  redirect('sales.php', false);
                 } else {
                   $session->msg('d', 'Failed to sale product.');
-                  redirect('add_sale.php', false);
+                  redirect('sales.php', false);
                 }
         } else {
            $session->msg("d", $errors);
-           redirect('add_sale.php',false);
+           redirect('sales.php',false);
         }
   }
 

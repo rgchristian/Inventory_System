@@ -3,7 +3,9 @@
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(3);
+   
 ?>
+
 <?php
 
   if (isset($_POST['add_sale'])) {
@@ -43,6 +45,25 @@
 ?>
 <?php include_once('layouts/header.php'); ?>
 
+<?php
+require_once('includes/load.php');
+page_require_level(2);
+
+// Check if a product ID is provided
+if (isset($_GET['id'])) {
+    $product_id = (int)$_GET['id'];
+    $product = find_product_by_id($product_id);
+    
+    // Check if the product is found
+    if (!$product) {
+        $session->msg('d', 'Product not found!');
+        redirect('product.php');
+    }
+} else {
+    $session->msg('d', 'Invalid product ID!');
+    redirect('product.php');
+}
+?>
 <style>
   body {
     background-color: #DDDDDD;

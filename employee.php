@@ -37,7 +37,7 @@
         </div>
         <div class="panel-value pull-right">
           <h2 style="color: #567189;" class="margin-top"> <?php echo $c_categorie['total'];?> </h2>
-          <p class="text-muted">Tile Types</p>
+          <p class="text-muted">Tile Collections</p>
         </div>
       </div>
     </div>

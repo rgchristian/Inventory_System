@@ -92,9 +92,9 @@ if (isset($_POST['add_product'])) {
                     </span>
                     <select class="form-control" data-toggle="tooltip" data-placement="bottom" title="Select tile size" name="tile-size">
                       <option value="">Tile Size</option>
-                      <option value="10x10">10x10</option>
-                      <option value="20x20">20x20</option>
-                      <option value="30x30">30x30</option>
+                      <option value="2x12">2x12</option>
+                      <option value="12x12">12x12</option>
+                      <option value="12x24">12x24</option>
                     </select>
                   </div>
                 </div>

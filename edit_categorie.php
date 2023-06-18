@@ -47,7 +47,7 @@ if(isset($_POST['edit_cat'])){
        <div class="panel-heading clearfix">
          <strong>
            
-           <span >Edit Tile Type</span>
+           <span >Edit Tile Collection</span>
         </strong>
         <div class="pull-right">
           <a href="categorie.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Back"><span class="fas fa-arrow-left"></span></a>
@@ -58,12 +58,12 @@ if(isset($_POST['edit_cat'])){
        <div class="panel-body">
          <form method="post" action="edit_categorie.php?id=<?php echo (int)$categorie['id'];?>">
          <div class="form-group">
-         <label style="color: #7f7f7f;">Tile Type</label>
+         <label style="color: #7f7f7f;">Tile Collection</label>
   <div class="input-group">
     <span class="input-group-addon">
       <i class="fas fa-pencil-alt" style="color: #666666;"></i>
     </span>
-    <input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Edit tile type name" name="categorie-name" value="<?php echo remove_junk(ucfirst($categorie['name']));?>">
+    <input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Edit tile collection name" name="categorie-name" value="<?php echo remove_junk(ucfirst($categorie['name']));?>">
   </div>
 </div>
 

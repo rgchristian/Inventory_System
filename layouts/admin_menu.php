@@ -31,7 +31,7 @@
   <li>
     <a href="categorie.php">
       <i class="glyphicon glyphicon-th-large"></i>
-      <span class="menu-title">Tile Types</span>
+      <span class="menu-title">Tile Collections</span>
     </a>
   </li>
 

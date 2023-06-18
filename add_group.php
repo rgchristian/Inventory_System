@@ -99,7 +99,7 @@
     <span class="input-group-addon">
       <i class="fas fa-key" style="color: #567189;"></i>
     </span>
-    <input type="number" class="form-control" name="group-level" data-toggle="tooltip" data-placement="bottom" title="Input access role level (must be 1-3)" placeholder="Role Level">
+    <input type="number" class="form-control" name="group-level" min="1" max="3" pattern="[1-3]" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="1" data-toggle="tooltip" data-placement="bottom" title="Input access role level" placeholder="Role Level">
   </div>
 </div>
 

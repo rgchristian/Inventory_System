@@ -18,6 +18,14 @@
       <!-- <li><a href="sales.php"><i class="fa fa-history"></i>Sales History</a></li> -->
     <!-- </ul> -->
   </li>
+
+  <li>
+    <a href="categorie.php">
+      <i class="glyphicon glyphicon-th-large"></i>
+      <span class="menu-title">Tile Collections</span>
+    </a>
+  </li>
+  
   <li>
     <a href="media.php" >
       <i class="glyphicon glyphicon-picture"></i>

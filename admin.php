@@ -51,11 +51,11 @@
     <div class="col-md-3">
       <div class="panel panel-box clearfix">
         <div class="panel-icon pull-left" style="background-color: #567189;"> 
-          <i data-toggle="tooltip" data-placement="bottom" title="Manage tile types" class="fas fa-th-large"></i>
+          <i data-toggle="tooltip" data-placement="bottom" title="Manage tile collections" class="fas fa-th-large"></i>
         </div>
         <div class="panel-value pull-right">
           <h2 style="color: #567189;" class="margin-top"> <?php echo $c_categorie['total'];?> </h2>
-          <p class="text-muted">Tile Types</p>
+          <p class="text-muted">Tile Collections</p>
         </div>
       </div>
     </div>

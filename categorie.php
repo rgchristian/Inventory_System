@@ -46,18 +46,18 @@
         <div class="panel-heading">
           <strong>
             
-            <span >Add New Tile Type</span>
+            <span >Add New Tile Collection</span>
           </strong>
         </div>
         <div class="panel-body">
           <form method="post" action="categorie.php">
           <div class="form-group">
-          <label style="color: #7f7f7f;">Tile Type</label>
+          <label style="color: #7f7f7f;">Tile Collection</label>
   <div class="input-group">
     <span class="input-group-addon">
       <i class="fas fa-th-large" style="color: #666666;"></i>
     </span>
-    <input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Input tile type name" name="category-name" placeholder="Tile Type Name"> 
+    <input type="text" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Input tile collection name" name="category-name" placeholder="Tile Collection Name"> 
   </div>
 </div>
 
@@ -72,7 +72,7 @@
       <div class="panel-heading">
         <strong>
           
-          <span >All Tile Types</span>
+          <span >All Tile Collections</span>
        </strong>
       </div>
         <div class="panel-body">
@@ -80,7 +80,7 @@
             <thead>
                 <tr>
                     <th class="text-center" style="width: 50px;">#</th>
-                    <th>Tile Type</th>
+                    <th>Tile Collection</th>
                     <th class="text-center" style="width: 100px;">Actions</th>
                 </tr>
 
