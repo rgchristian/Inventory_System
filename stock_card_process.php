@@ -4,6 +4,8 @@ $results = '';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(3);
+  // Retrieve all products from the inventory table
+  $all_products = find_all('products');
 ?>
 <?php
   if(isset($_POST['submit'])){

@@ -21,7 +21,7 @@
   <?php  if ($session->isUserLoggedIn(true)): ?>
     
     <header id="header" style="background-color: #FFFFFF;">
-      <div class="logo pull-left" style="background-color: #58748c;"><i class="fas fa-stream">&nbsp;</i> Inventory System</div>
+      <div class="logo pull-left" style="background-color: #58748c;"><i class="fa fa-dedent">&nbsp;</i> Inventory System</div>
       <div class="header-content">
       <div class="header-date pull-left">
         
