@@ -1,9 +1,15 @@
 <?php
   $page_title = 'Dashboard';
   require_once('includes/load.php');
-  // Checkin What level user has permission to view this page
-   page_require_level(1);
+  // Check what level user has permission to view this page
+  page_require_level(1);
 ?>
+<?php
+if (!$session->isUserLoggedIn(true)) {
+  redirect('index.php', false);
+}
+?>
+<?php include_once('layouts/header.php'); ?>
 
 <?php
  $c_categorie     = count_by_id('categories');
@@ -15,6 +21,14 @@
  $recent_sales    = find_recent_sale_added('5');
  $supplier_count = count_by_id('suppliers');
 ?>
+
+<script>
+  // Disable browser back button on admin.php
+  window.history.pushState(null, '', window.location.href);
+  window.onpopstate = function () {
+    window.history.pushState(null, '', window.location.href);
+  };
+</script>
 
 <?php include_once('layouts/header.php');?>
 
@@ -37,7 +51,7 @@
     <div class="col-md-3">
       <div class="panel panel-box clearfix">
         <div class="panel-icon pull-left" style="background-color: #567189;">
-          <i data-toggle="tooltip" data-placement="bottom" title="Manage users" class="glyphicon glyphicon-user"></i>
+          <i data-toggle="tooltip" data-placement="bottom" title="Manage users" class="fas fa-user-alt"></i>
         </div>
         <div class="panel-value pull-right">
           <h2 style="color: #567189;" class="margin-top"><?php echo $c_user['total'];?></h2>
@@ -163,7 +177,7 @@
               <tr>
                 <td class="text-center"><?php echo count_id();?></td>
                 <td>
-                  <a href="edit_sale.php?id=<?php echo (int)$recent_sale['id']; ?>">
+                  <!-- <a href="edit_sale.php?id=<?php echo (int)$recent_sale['id']; ?>"> -->
                   <?php echo remove_junk(first_character($recent_sale['name'])); ?>
                   </a>
                 </td>

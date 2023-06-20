@@ -142,7 +142,7 @@ if (isset($_POST['product'])) {
                       <span class="input-group-addon">
                         <i class="fas fa-shopping-cart" style="color: #666666;"></i>
                       </span>
-                      <input type="number" class="form-control" readonly name="product-quantity" data-toggle="tooltip" data-placement="bottom" title="Product quantity" value="<?php echo remove_junk($product['quantity']); ?>">
+                      <input type="number" class="form-control" name="product-quantity" data-toggle="tooltip" data-placement="bottom" title="Product quantity" value="<?php echo remove_junk($product['quantity']); ?>">
                     </div>
                   </div>
                 </div>
@@ -179,7 +179,7 @@ if (isset($_POST['product'])) {
         <span class="input-group-addon">
           <i class="fas fa-truck" style="color: #666666;"></i>
         </span>
-        <input class="form-control" data-toggle="tooltip" readonly data-placement="bottom" title="Product supplier" value="<?php echo remove_junk($e_supplier['supp_name']); ?>">
+        <input class="form-control" readonly data-toggle="tooltip" data-placement="bottom" title="Product supplier" value="<?php echo remove_junk($e_supplier['supp_name']); ?>">
 
       </div>
     </div>

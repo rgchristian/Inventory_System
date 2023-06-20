@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Inventory';
+$page_title = 'Tile Products';
 require_once('includes/load.php');
 page_require_level(2);
 
@@ -70,8 +70,6 @@ if (isset($_POST['search'])) {
   align-items: center;
   gap: 10px;
 }
-
-
   .readonly-button {
     background-color: #f5f5f5;
     border-color: #ddd;
@@ -131,22 +129,25 @@ if (isset($_POST['search'])) {
             <strong>
                 <span >Tile Products</span>
             </strong>
+            
             <div class="pull-right button-container">
+            <a href="product.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Tile products"><i class="fab fa-delicious"></i></a>
                 <div class="row">
-                    <div class="col-md-6">
+                
+                <a href="add_product.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Add new tile product" style="margin-left: 194px"><i class="fas fa-plus"></i> Add New Tile Product</a>
+                
+                <div class="col-md-6">
                         <form method="POST" action="">
-                            <div class="input-group pull-right">
-                                <input type="text" class="form-control" name="search" placeholder="Search for tile" data-toggle="tooltip" data-placement="bottom" title="Input product name" style="font-size: 13px;" value="<?php echo isset($search_term) ? $search_term : ''; ?>">
+                            <div class="input-group pull-right" style="width: 330px;">
+                            <input type="text" class="form-control" name="search" placeholder="Search for tile" data-toggle="tooltip" data-placement="bottom" title="Input product name" style="font-size: 13px;" value="<?php echo isset($search_term) ? $search_term : ''; ?>">
                                 <span class="input-group-btn">
                                     <button class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Search product" type="submit" style="font-size: 13px;"><i class="fa fa-search" style="font-size: 13px;"></i></button>&nbsp;
                                 </span>
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-6">
-                        <div class="button-group">
-                            <a href="add_product.php" class="btn custom-primary-btn btn-sm pull-right" data-toggle="tooltip" data-placement="bottom" title="Add new tile product"><i class="fas fa-plus"></i> Add New Tile Product</a>
-                            <a href="product.php" class="btn custom-primary-btn btn-sm pull-right" data-toggle="tooltip" data-placement="bottom" title="Inventory"><span class="fab fa-delicious"></span></a>
+                    <div>
+                        <div>
                         </div>
                     </div>
                 </div>
@@ -175,7 +176,7 @@ if (isset($_POST['search'])) {
                     <form method="POST" action="">
                         <div class="input-group clearfix">
                             <div class="input-group-prepend">
-                                <button class="btn custom-primary-btn btn-sm dropdown-toggle pull-right" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button class="btn custom-primary-btn btn-sm dropdown-toggle pull-right" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-toggle="tooltip" data-placement="bottom" title="Filter by tile type">
                                     <i class="fas fa-filter">&nbsp;</i>&nbsp;<i class="fas fa-th-large">&nbsp;</i>&nbsp;<i class="fas fa-caret-down"></i>
                                 </button>
                                 <div class="dropdown-menu">
@@ -187,6 +188,9 @@ if (isset($_POST['search'])) {
                                     }
                                     ?>
                                 </div>
+                                <a href="#" class="btn custom-primary-btn btn-sm pull-right" data-toggle="tooltip" data-placement="bottom" title="Total number of products">
+      <i class="fas fa-box-open"><?php echo "<span><span data-toggle='tooltip' data-placement='bottom'> ".count($products)."</span></span>"; ?></i>
+    </a>
                             </div>
                         </div>
                     </form>
@@ -299,3 +303,9 @@ if (isset($_POST['search'])) {
 </div>
 
 <?php include_once('layouts/footer.php'); ?>
+
+
+
+
+
+

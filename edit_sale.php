@@ -1,5 +1,5 @@
 <?php
-  $page_title = 'Edit sale';
+  $page_title = 'Edit Sale Record';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
    page_require_level(3);
@@ -82,20 +82,20 @@ if (isset($_POST['update_sale'])) {
             <tbody id="product_info">
               <tr>
                 <td id="s_name">
-                  <input type="text" class="form-control" id="sug_input" name="title" data-toggle="tooltip" data-placement="bottom" readonly title="Product name" value="<?php echo remove_junk($product['name']); ?>">
+                  <input type="text" class="form-control" id="sug_input" name="title" data-toggle="tooltip" data-placement="bottom" title="Product name" value="<?php echo remove_junk($product['name']); ?>">
                   <div id="result" class="list-group"></div>
                 </td>
                 <td id="s_qty">
                   <input type="text" class="form-control" name="quantity" data-toggle="tooltip" data-placement="bottom" title="Edit sold product quantity" value="<?php echo (int)$sale['qty']; ?>">
                 </td>
                 <td id="s_price">
-                  <input type="text" class="form-control" name="price" data-toggle="tooltip" data-placement="bottom" readonly title="Product selling price" value="<?php echo remove_junk($product['sale_price']); ?>">
+                  <input type="text" class="form-control" name="price" data-toggle="tooltip" data-placement="bottom" title="Product selling price" value="<?php echo remove_junk($product['sale_price']); ?>">
                 </td>
                 <td>
-                  <input type="text" class="form-control" name="total" data-toggle="tooltip" data-placement="bottom" readonly title="Product total price amount" value="<?php echo remove_junk($sale['price']); ?>">
+                  <input type="text" class="form-control" name="total" data-toggle="tooltip" data-placement="bottom" title="Product total price amount" value="<?php echo remove_junk($sale['price']); ?>">
                 </td>
                 <td id="s_date">
-                  <input type="date" class="form-control datepicker" name="date" data-date-format="" data-toggle="tooltip" data-placement="bottom" readonly title="Product sold date" value="<?php echo remove_junk($sale['date']); ?>">
+                  <input type="date" class="form-control datepicker" name="date" data-date-format="" data-toggle="tooltip" data-placement="bottom" title="Product sold date" value="<?php echo remove_junk($sale['date']); ?>">
                 </td>
                 <td>
                   <button type="submit" name="update_sale" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Save changes">Save Changes</button>

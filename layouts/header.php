@@ -1,4 +1,8 @@
 <?php $user = current_user(); ?>
+<?php
+  // Get the current page URL
+  $current_page = basename($_SERVER['PHP_SELF']);
+?>
 <!DOCTYPE html>
   <html lang="en">
     <head>
@@ -21,7 +25,7 @@
   <?php  if ($session->isUserLoggedIn(true)): ?>
     
     <header id="header" style="background-color: #FFFFFF;">
-      <div class="logo pull-left" style="background-color: #58748c;"><i class="fa fa-dedent">&nbsp;</i> Inventory System</div>
+      <div class="logo pull-left" style="background-color: #58748c;">Tile Inventory System</div>
       <div class="header-content">
       <div class="header-date pull-left">
         
@@ -38,13 +42,7 @@
       <div class="pull-right clearfix">
   
   <ul class="info-menu list-inline list-unstyled" style="margin-left: 10px;">
-  <!-- <a href="admin.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Admin Dashboard"><span class="fas fa-tachometer-alt"></span></a> -->
-  <!-- <a href="users.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="User Management"><span class="glyphicon glyphicon-user"></span></a> -->
-  <!-- <a href="employee.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Employee Dashboard"><span class="fa fa-tasks"></span></a> -->
-  <!-- <a href="group.php"  data-toggle="tooltip" data-placement="bottom" title="Role Management"><span class="fas fa-key"></span></a> -->
-  <!-- <a href="product.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Inventory"><span class="fab fa-delicious"></span></a> -->
-  <!-- <a href="sales.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Sales History"><span class="fab fa-wpforms"></span></a> -->
-  <!-- <a href="stock_card.php" class="btn custom-primary-btn btn-sm"><span class="far fa-file-alt"></span></a> -->
+  
   
     <li class="dropdown profile">
       <a href="#" data-toggle="dropdown" class="toggle" aria-expanded="false">
@@ -83,6 +81,7 @@
 </div>
 
     </header>
+    
     <div class="sidebar">
       <?php if($user['user_level'] === '1'): ?>
         <!-- admin menu -->
@@ -99,6 +98,17 @@
       <?php endif;?>
 
    </div>
+
+   <script>
+    // Add 'active' class to the current page's menu item
+    const currentUrl = '<?php echo $current_page; ?>';
+    const menuItem = document.querySelector(`.sidebar ul li a[href="${currentUrl}"]`);
+    if (menuItem) {
+      menuItem.parentElement.classList.add('active');
+    }
+  </script>
+</body>
+</html>
 <?php endif;?>
 
 <style>
@@ -119,6 +129,16 @@
     background-color: #ffffff; /* Set your desired background color for readonly state */
     color: ; /* Set your desired text color for readonly state */
   }
+  .sidebar ul li.active {
+      background-color: #191919;
+      border-color: #567189;
+      border-radius: 6px;
+    }
+
+    /* Style the active menu item */
+    .sidebar ul li.active a {
+      color: white;
+    }
 </style>
 
 

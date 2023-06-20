@@ -209,17 +209,29 @@ function tableExists($table){
    /* Function for Finding all product name
    /* JOIN with categorie  and media database table
    /*--------------------------------------------------------------*/
-   function join_product_table()
-    {
-    global $db;
-    $sql  = "SELECT p.id, p.name, p.quantity, p.buy_price, p.sale_price, p.media_id, p.date, c.name AS categorie, m.file_name AS image, p.tile_size, s.supp_name AS supplier";
-    $sql .= " FROM products p";
-    $sql .= " LEFT JOIN categories c ON c.id = p.categorie_id";
-    $sql .= " LEFT JOIN media m ON m.id = p.media_id";
-    $sql .= " LEFT JOIN suppliers s ON s.id = p.supplier";
-    $sql .= " ORDER BY p.id ASC";
-    return find_by_sql($sql);
-    }
+//    function join_product_table()
+// {
+//     global $db;
+//     $sql  = "SELECT p.id, p.name, p.quantity, p.buy_price, p.sale_price, p.media_id, p.date, c.name AS categorie, m.file_name AS image, p.tile_size, s.supp_name AS supplier";
+//     $sql .= " FROM products p";
+//     $sql .= " LEFT JOIN categories c ON c.id = p.categorie_id";
+//     $sql .= " LEFT JOIN media m ON m.id = p.media_id";
+//     $sql .= " LEFT JOIN suppliers s ON s.id = p.supplier";
+//     $sql .= " WHERE p.deleted = 0"; // Add condition to exclude deleted products
+//     $sql .= " ORDER BY p.id ASC";
+//     return find_by_sql($sql);
+// }
+function join_product_table(){
+  global $db;
+  $sql  = "SELECT p.id, p.name, p.quantity, p.buy_price, p.sale_price, p.media_id, p.date, c.name AS categorie, m.file_name AS image, p.tile_size, s.supp_name AS supplier";
+  $sql .= " FROM products p";
+  $sql .= " LEFT JOIN categories c ON c.id = p.categorie_id";
+  $sql .= " LEFT JOIN media m ON m.id = p.media_id";
+  $sql .= " LEFT JOIN suppliers s ON s.id = p.supplier";
+  $sql .= " WHERE p.deleted = 0"; // Add condition to exclude deleted products
+  $sql .= " ORDER BY p.id ASC";
+  return find_by_sql($sql);
+}
 
     
   /*--------------------------------------------------------------*/
@@ -227,13 +239,20 @@ function tableExists($table){
   /* Request coming from ajax.php for auto suggest
   /*--------------------------------------------------------------*/
 
-   function find_product_by_title($product_name){
-     global $db;
-     $p_name = remove_junk($db->escape($product_name));
-     $sql = "SELECT name FROM products WHERE name like '%$p_name%' LIMIT 5";
-     $result = find_by_sql($sql);
-     return $result;
-   }
+  //  function find_product_by_title($product_name){
+  //    global $db;
+  //    $p_name = remove_junk($db->escape($product_name));
+  //    $sql = "SELECT name FROM products WHERE name like '%$p_name%' LIMIT 5";
+  //    $result = find_by_sql($sql);
+  //    return $result;
+  //  }
+  function find_product_by_title($product_name){
+    global $db;
+    $p_name = remove_junk($db->escape($product_name));
+    $sql = "SELECT name FROM products WHERE name like '%$p_name%' AND deleted = 0 LIMIT 5"; // Add condition to exclude deleted products
+    $result = find_by_sql($sql);
+    return $result;
+  }
 
   /*--------------------------------------------------------------*/
   /* Function for Finding all product info by product title
@@ -262,14 +281,22 @@ function tableExists($table){
   /*--------------------------------------------------------------*/
   /* Function for Update product quantity stock
   /*--------------------------------------------------------------*/
-  function update_product_qty_stock($qty,$product_id){
+  // function update_product_qty_stock($qty,$product_id){
+  //   global $db;
+  //   $qty = (int) $qty;
+  //   $id  = (int)$$product_id;
+  //   $sql = "UPDATE products SET quantity = quantity + $qty, added_stock = added_stock + $qty WHERE id = $product_id";
+  //   $result = $db->query($sql);
+  //   return($db->affected_rows() === 1 ? true : false);
+  
+  // }
+  function update_product_qty_stock($qty, $product_id){
     global $db;
     $qty = (int) $qty;
-    $id  = (int)$$product_id;
+    $product_id = (int) $product_id;
     $sql = "UPDATE products SET quantity = quantity + $qty, added_stock = added_stock + $qty WHERE id = $product_id";
     $result = $db->query($sql);
-    return($db->affected_rows() === 1 ? true : false);
-  
+    return ($db->affected_rows() === 1 ? true : false);
   }
   // function update_product_qty_stock($qty,$p_id){
   //   global $db;
@@ -280,11 +307,6 @@ function tableExists($table){
   //   return($db->affected_rows() === 1 ? true : false);
 
   // }
-
-  
-
- 
-
 
   /*--------------------------------------------------------------*/
   /* Function for Display Recent product Added
