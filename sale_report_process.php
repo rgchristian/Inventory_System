@@ -24,6 +24,13 @@ $results = '';
     redirect('sales_report.php', false);
   }
 ?>
+
+<script>
+  function printPDF() {
+    window.print();
+  }
+</script>
+
 <!doctype html>
 <html lang="en-US">
  <head>
@@ -89,8 +96,14 @@ $results = '';
    </style>
 
 <div class="pull-right">
-          <a href="sales_report.php" class="btn custom-primary-btn btn-sm pull-right" data-toggle="tooltip" data-placement="bottom" title="Back"><span class="fas fa-arrow-left"></span></a>
-        </div>
+  
+  <a href="sales_report.php" class="btn custom-primary-btn btn-sm" data-toggle="tooltip" data-placement="bottom" title="Back"><span class="fas fa-arrow-left"></span></a>
+  <div>
+
+  </div>
+  <a href="sales_report_pdf.php" class="btn custom-primary-btn btn-sm pull-right" style="margin-top: 10px" onclick="printPDF()" data-toggle="tooltip" data-placement="bottom" title="Print as PDF"><span class="fas fa-print"></span></a>
+</div>
+
 
 </head>
 <body>
@@ -108,7 +121,7 @@ $results = '';
               <th>Buying Price</th>
               <th>Selling Price</th>
               <th>Total Quantity</th>
-              <th>Total</th>
+              <th>Total</th> 
           </tr>
         </thead>
         <tbody>
@@ -145,6 +158,7 @@ $results = '';
         redirect('sales_report.php', false);
      endif;
   ?>
+  
 </body>
 </html>
 <?php if(isset($db)) { $db->db_disconnect(); } ?>
