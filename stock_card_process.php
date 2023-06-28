@@ -93,6 +93,11 @@ $results = '';
 
 <div class="pull-right">
           <a href="stock_card.php" class="btn custom-primary-btn btn-sm pull-right" data-toggle="tooltip" data-placement="bottom" title="Back"><span class="fas fa-arrow-left"></span></a>
+        <div>
+
+        </div>
+        
+        <a href="stock_report_pdf.php" class="btn custom-primary-btn btn-sm pull-right" style="margin-top: 10px" onclick="printPDF()" data-toggle="tooltip" data-placement="bottom" title="Print as PDF"><span class="fas fa-print"></span></a>
         </div>
 </head>
 

@@ -209,29 +209,44 @@ function tableExists($table){
    /* Function for Finding all product name
    /* JOIN with categorie  and media database table
    /*--------------------------------------------------------------*/
-//    function join_product_table()
-// {
-//     global $db;
-//     $sql  = "SELECT p.id, p.name, p.quantity, p.buy_price, p.sale_price, p.media_id, p.date, c.name AS categorie, m.file_name AS image, p.tile_size, s.supp_name AS supplier";
-//     $sql .= " FROM products p";
-//     $sql .= " LEFT JOIN categories c ON c.id = p.categorie_id";
-//     $sql .= " LEFT JOIN media m ON m.id = p.media_id";
-//     $sql .= " LEFT JOIN suppliers s ON s.id = p.supplier";
-//     $sql .= " WHERE p.deleted = 0"; // Add condition to exclude deleted products
-//     $sql .= " ORDER BY p.id ASC";
-//     return find_by_sql($sql);
+// function join_product_table(){
+//   global $db;
+//   $sql  = "SELECT p.id, p.name, p.quantity, p.buy_price, p.sale_price, p.media_id, p.date, c.name AS categorie, m.file_name AS image, p.tile_size, s.supp_name AS supplier";
+//   $sql .= " FROM products p";
+//   $sql .= " LEFT JOIN categories c ON c.id = p.categorie_id";
+//   $sql .= " LEFT JOIN media m ON m.id = p.media_id";
+//   $sql .= " LEFT JOIN suppliers s ON s.id = p.supplier";
+//   $sql .= " WHERE p.deleted = 0"; // Add condition to exclude deleted products
+//   $sql .= " ORDER BY p.id ASC";
+//   return find_by_sql($sql);
 // }
-function join_product_table(){
+// function join_product_table() {
+//   global $db;
+//   $sql  = "SELECT p.id, p.name, p.quantity, p.buy_price, p.sale_price, p.media_id, p.date, c.name AS categorie, m.file_name AS image, p.tile_size, s.supp_name AS supplier, sales.qty";
+//   $sql .= " FROM products p";
+//   $sql .= " LEFT JOIN categories c ON c.id = p.categorie_id";
+//   $sql .= " LEFT JOIN media m ON m.id = p.media_id";
+//   $sql .= " LEFT JOIN suppliers s ON s.id = p.supplier";
+//   $sql .= " LEFT JOIN sales ON sales.product_id = p.id"; // Join the 'sales' table
+//   $sql .= " WHERE p.deleted = 0"; // Add condition to exclude deleted products
+//   $sql .= " ORDER BY p.id ASC";
+//   return find_by_sql($sql);
+// }
+function join_product_table() {
   global $db;
-  $sql  = "SELECT p.id, p.name, p.quantity, p.buy_price, p.sale_price, p.media_id, p.date, c.name AS categorie, m.file_name AS image, p.tile_size, s.supp_name AS supplier";
+  $sql  = "SELECT p.id, p.name, p.quantity, p.buy_price, p.sale_price, p.media_id, p.date, c.name AS categorie, m.file_name AS image, p.tile_size, s.supp_name AS supplier, sales.qty, p.added_stock";
   $sql .= " FROM products p";
   $sql .= " LEFT JOIN categories c ON c.id = p.categorie_id";
   $sql .= " LEFT JOIN media m ON m.id = p.media_id";
   $sql .= " LEFT JOIN suppliers s ON s.id = p.supplier";
+  $sql .= " LEFT JOIN sales ON sales.product_id = p.id"; // Join the 'sales' table
   $sql .= " WHERE p.deleted = 0"; // Add condition to exclude deleted products
   $sql .= " ORDER BY p.id ASC";
   return find_by_sql($sql);
 }
+
+
+
 
     
   /*--------------------------------------------------------------*/
@@ -487,6 +502,21 @@ function find_product_by_id($product_id) {
   $result = $db->query($sql);
   return $db->fetch_assoc($result);
 }
+
+// function get_stock_card_item($product_id) {
+//   global $db;
+//   $product_id = (int)$product_id;
+
+//   $sql = "SELECT p.date, p.name AS 'Product Name', p.stock_status AS 'Stock', p.added_stock AS 'In', s.qty AS 'Out', s.supp_name AS 'Supplier'
+//           FROM products p
+//           LEFT JOIN sales s ON s.product_id = p.id
+//           LEFT JOIN suppliers supp ON supp.id = p.supplier
+//           WHERE p.id = {$product_id}";
+
+//   return find_by_sql($sql);
+// }
+
+
 
 
 

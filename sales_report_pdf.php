@@ -38,12 +38,19 @@ $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 $pdf->SetFont('helvetica', '', 10);
 
 $pdf->AddPage();
-$pdf->writeHTML('<div class="pull-right">
-    <a href="sales_report.php" class="btn custom-primary-btn btn-sm pull-right" data-toggle="tooltip" data-placement="bottom" title="Back"><span class="fas fa-arrow-left"></span></a>
-  </div>');
 
 if ($results) {
-  $html = '<div class="page-break">
+  $html = '
+
+  <style>
+  
+  a .pull-right {
+    visibility: hidden;
+  }
+  
+  </style>
+
+  <div class="page-break">
       <div class="sale-head">
           <h1 style="color: #666666;">Tile Inventory Management System - Sales Report</h1>
           <strong style="color: #666666;">' . (isset($start_date) ? $start_date : '') . ' : ' . (isset($end_date) ? $end_date : '') . '</strong>

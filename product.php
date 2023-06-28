@@ -3,7 +3,7 @@ $page_title = 'Tile Products';
 require_once('includes/load.php');
 page_require_level(2);
 
-$products = join_product_table();
+$products = array_unique(join_product_table(), SORT_REGULAR);
 
 // Function to search products based on the search term
 function search_products($search_term) {
@@ -47,6 +47,11 @@ if (isset($_POST['search'])) {
     $filter_result = "<div class='pull-right'>
                           <a href='product.php' class='btn custom-primary-btn btn-sm'><span class='fas fa-cube'></span></a>
                       </div>";
+}
+// Calculate the total quantity
+$totalQuantity = 0;
+foreach ($products as $product) {
+    $totalQuantity += (int)$product['quantity'];
 }
 ?>
 
@@ -189,9 +194,11 @@ if (isset($_POST['search'])) {
                                     ?>
                                 </div>
                                 <a href="#" class="btn custom-primary-btn btn-sm pull-right" data-toggle="tooltip" data-placement="bottom" title="Total number of products">
-      <i class="fas fa-box-open"><?php echo "<span><span data-toggle='tooltip' data-placement='bottom'> ".count($products)."</span></span>"; ?></i>
+      <i class="fas fa-box-open">&nbsp;<?php echo "<span><span data-toggle='tooltip' data-placement='bottom'> ".count($products)."</span></span>"; ?></i>
     </a>
-                            </div>
+    <a href="#" class="btn custom-primary-btn btn-sm pull-right" data-toggle="tooltip" data-placement="bottom" title="Total number of stocks">
+    <i class="fas fa-box">&nbsp;<?php echo "<span><span data-toggle='tooltip' data-placement='bottom'> ". $totalQuantity ."</span></span>"; ?></i></a>
+                                  </div>
                         </div>
                     </form>
                 </div>
@@ -226,7 +233,7 @@ if (isset($_POST['search'])) {
               <th class="text-center" style="width: 10%;">Product Name</th>
               <th class="text-center" style="width: 7%;">Tile Size</th>
               <th class="text-center" style="width: 10%;">Tile Type</th>
-              <th class="text-center" style="width: 10%;">In-Stock</th>
+              <th class="text-center" style="width: 10%;">Quantity</th>
               <th class="text-center" style="width: 10%;">Buying Price</th>
               <th class="text-center" style="width: 10%;">Selling Price</th>
               <th class="text-center" style="width: 12%;">Product Added</th>
@@ -273,10 +280,6 @@ if (isset($_POST['search'])) {
                       <span class="fas fa-plus-square" style="color: #567189;"></span>
                     </a>
 
-                    <!-- <a class="text-center" href="add_sale.php?id=<?php echo (int)$product['id'];?>" class="btn btn-success btn-xs" title="Sell product" data-toggle="tooltip">
-                      <span class="fas fa-cart-plus" style="color: #567189;"></span>
-                    </a> -->
-
                     <?php if ($stock > 0): ?>
   <a class="text-center" href="add_sale.php?id=<?php echo (int)$product['id'];?>" class="btn btn-success btn-xs" title="Sell product" data-toggle="tooltip">
     <span class="fas fa-cart-plus" style="color: #567189;"></span>
@@ -288,16 +291,19 @@ if (isset($_POST['search'])) {
 <?php endif; ?>
 
 
-                    <a class="text-center" href="delete_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-danger btn-xs" title="Remove product" data-toggle="tooltip">
+                    <!-- <a class="text-center" href="delete_product.php?id=<?php echo (int)$product['id'];?>" class="btn btn-danger btn-xs" title="Remove product" data-toggle="tooltip">
                       <span class="fas fa-trash" style="color: #567189;"></span>
-                    </a>
+                    </a> -->
+                     <a class="text-center" href="stock_card_item.php?id=<?php echo (int)$product['id'];?>" class="btn btn-danger btn-xs" title="View stock card" data-toggle="tooltip">
+                      <span class="fas fa-file-alt" style="color: #567189;"></span>
+                    </a> 
                   </div>
                 </td>
               </tr>
             <?php endforeach; ?>
           </tbody>
         </table>
-      </div>
+      </div>                   
     </div>
   </div>
 </div>

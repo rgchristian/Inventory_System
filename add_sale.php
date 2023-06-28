@@ -5,9 +5,24 @@
    page_require_level(3);
    
 ?>
-
 <?php
+// Check if a product ID is provided
+if (isset($_GET['id'])) {
+  $product_id = (int)$_GET['id'];
+  $product = find_product_by_id($product_id);
+  
+  // Check if the product is found
+  if (!$product) {
+      $session->msg('d', 'Product not found!');
+      redirect('product.php');
+  }
+} else {
+  // $session->msg('d', 'Invalid product ID!');
+  // redirect('product.php');
+}
 
+?>
+<?php
   if (isset($_POST['add_sale'])) {
   $req_fields = array('s_id', 'quantity', 'price', 'total', 'date');
   validate_fields($req_fields);
@@ -35,6 +50,7 @@
     } else {
       $session->msg('d', "Selling quantity exceeds the available quantity for the product: {$product['name']}");
       redirect('add_sale.php', false);
+      
     }
   } else {
     $session->msg("d", $errors);
@@ -43,27 +59,9 @@
 }
 
 ?>
+
 <?php include_once('layouts/header.php'); ?>
 
-<?php
-require_once('includes/load.php');
-page_require_level(2);
-
-// Check if a product ID is provided
-if (isset($_GET['id'])) {
-    $product_id = (int)$_GET['id'];
-    $product = find_product_by_id($product_id);
-    
-    // Check if the product is found
-    if (!$product) {
-        $session->msg('d', 'Product not found!');
-        redirect('product.php');
-    }
-} else {
-    $session->msg('d', 'Invalid product ID!');
-    redirect('product.php');
-}
-?>
 <style>
   body {
     background-color: #DDDDDD;

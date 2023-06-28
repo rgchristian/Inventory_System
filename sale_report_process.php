@@ -92,7 +92,9 @@ $results = '';
     background-color: white;
     border-color: black;
   }
-
+   a .pull-right {
+    visibility: hidden;
+  }
    </style>
 
 <div class="pull-right">
